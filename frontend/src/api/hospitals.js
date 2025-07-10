@@ -7,4 +7,4 @@ export async function searchHospitals({ lat, lng, radius = 10, limit = 10 }) {
     params: { lat, lng, radius, limit },
   });
   return res.data;
-} 
+}

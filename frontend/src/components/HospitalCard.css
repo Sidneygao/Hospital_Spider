@@ -1,0 +1,28 @@
+.hospital-card-aero {
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px 0 rgba(0, 40, 120, 0.12) !important;
+  border: none !important;
+  background: rgba(180,220,255,0.7) !important;
+  margin-bottom: 18px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0d47a1;
+  margin-bottom: 6px;
+}
+
+.card-info {
+  color: #1976d2;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 18px;
+  color: #333;
+  font-size: 0.98rem;
+  margin-top: 4px;
+} 

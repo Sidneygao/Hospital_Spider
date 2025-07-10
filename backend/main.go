@@ -119,9 +119,9 @@ func main() {
 	}
 
 	// 启动服务器
-	fmt.Println("Server starting on http://localhost:3000")
+	fmt.Println("Server starting on http://localhost:8080")
 	fmt.Println("Press Ctrl+C to stop the server")
-	r.Run(":3000")
+	r.Run(":8080")
 }
 
 // 初始化数据库
@@ -519,3 +519,4 @@ func getHospitalRating(hospitalID int) (float64, float64) {
 
 	return avgRating, avgConfidence
 }
+ 

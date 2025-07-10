@@ -16,11 +16,13 @@
 - **算法**: 地理距离计算、置信度算法、综合排名算法
 
 ### 前端
-- **框架**: React 18
-- **UI库**: Ant Design
+- **框架**: React 18 + TypeScript
+- **UI库**: Ant Design 5.x
 - **地图**: Google Maps API
-- **状态管理**: Redux
+- **状态管理**: Redux Toolkit
 - **数据可视化**: ECharts
+- **设计系统**: 淡雅色调 (#8B9DC3) + 卡片式布局
+- **响应式**: 完美适配 H5 移动端
 
 ## 核心功能
 
@@ -37,6 +39,8 @@
 3. **医院详情与地图展示**
    - 医院卡片展示基础信息、聚合评分/评级、资质
    - 详情页展示地图、评分/评级/资质详情
+   - 淡雅色调设计，圆角阴影卡片布局
+   - 响应式设计，完美适配移动端
 
 4. **用户与管理员交互**
    - 支持用户和管理员在详情页评论、评级、备注，信息实时反映
@@ -98,7 +102,7 @@
    ```
 
 3. **访问前端**
-   - 浏览器访问: http://localhost:3000
+   - 浏览器访问: http://localhost:3001
 
 ## 项目结构
 
@@ -109,8 +113,16 @@ Hospital_Spider/
 │   ├── spider.go        # 爬虫模块
 │   └── algorithm.go     # 算法模块
 ├── frontend/
+│   ├── src/
+│   │   ├── components/  # React组件
+│   │   ├── styles/      # 样式文件
+│   │   ├── services/    # API服务
+│   │   ├── types/       # TypeScript类型
+│   │   └── ...
 │   ├── package.json
-│   └── src/
+│   ├── tsconfig.json
+│   └── .eslintrc.js
+├── 前端设计.md          # 前端设计文档
 ├── go.mod               # Go模块文件
 ├── requirements.txt     # Python依赖（已弃用）
 └── README.md
