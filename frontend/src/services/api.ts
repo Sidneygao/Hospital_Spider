@@ -1,6 +1,7 @@
 import { Hospital, HospitalDetail } from '../types/hospital';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';
 
 // 通用请求函数
 const request = async <T>(url: string, options?: RequestInit): Promise<T> => {
@@ -47,7 +48,9 @@ export const searchHospitals = async (
 };
 
 // 获取医院详情
-export const getHospitalDetail = async (id: number): Promise<HospitalDetail> => {
+export const getHospitalDetail = async (
+  id: number,
+): Promise<HospitalDetail> => {
   return request<HospitalDetail>(`/hospitals/${id}`);
 };
 
@@ -60,14 +63,19 @@ export const submitHospitalFeedback = async (
     userId?: number;
   },
 ): Promise<{ success: boolean; message: string }> => {
-  return request<{ success: boolean; message: string }>(`/hospitals/${hospitalId}/feedback`, {
-    method: 'POST',
-    body: JSON.stringify(feedback),
-  });
+  return request<{ success: boolean; message: string }>(
+    `/hospitals/${hospitalId}/feedback`,
+    {
+      method: 'POST',
+      body: JSON.stringify(feedback),
+    },
+  );
 };
 
 // 地理编码服务（模拟）
-export const geocodeAddress = async (address: string): Promise<{
+export const geocodeAddress = async (
+  address: string,
+): Promise<{
   lat: number;
   lng: number;
   formattedAddress: string;
@@ -75,18 +83,50 @@ export const geocodeAddress = async (address: string): Promise<{
   // 这里应该调用真实的地理编码API
   // 暂时返回模拟数据
   const mockGeocoding = {
-    '北京市朝阳区建国门外大街1号': { lat: 39.9042, lng: 116.4074, formattedAddress: '北京市朝阳区建国门外大街1号' },
-    '上海市浦东新区陆家嘴环路1000号': { lat: 31.2304, lng: 121.4737, formattedAddress: '上海市浦东新区陆家嘴环路1000号' },
-    '广州市天河区珠江新城花城大道85号': { lat: 23.1291, lng: 113.2644, formattedAddress: '广州市天河区珠江新城花城大道85号' },
-    '深圳市南山区深南大道10000号': { lat: 22.5431, lng: 114.0579, formattedAddress: '深圳市南山区深南大道10000号' },
-    '杭州市西湖区文三路259号': { lat: 30.2741, lng: 120.1551, formattedAddress: '杭州市西湖区文三路259号' },
-    '成都市锦江区红星路三段1号': { lat: 30.5728, lng: 104.0668, formattedAddress: '成都市锦江区红星路三段1号' },
-    '武汉市江汉区解放大道634号': { lat: 30.5928, lng: 114.3055, formattedAddress: '武汉市江汉区解放大道634号' },
-    '西安市雁塔区高新路25号': { lat: 34.3416, lng: 108.9398, formattedAddress: '西安市雁塔区高新路25号' },
+    北京市朝阳区建国门外大街1号: {
+      lat: 39.9042,
+      lng: 116.4074,
+      formattedAddress: '北京市朝阳区建国门外大街1号',
+    },
+    上海市浦东新区陆家嘴环路1000号: {
+      lat: 31.2304,
+      lng: 121.4737,
+      formattedAddress: '上海市浦东新区陆家嘴环路1000号',
+    },
+    广州市天河区珠江新城花城大道85号: {
+      lat: 23.1291,
+      lng: 113.2644,
+      formattedAddress: '广州市天河区珠江新城花城大道85号',
+    },
+    深圳市南山区深南大道10000号: {
+      lat: 22.5431,
+      lng: 114.0579,
+      formattedAddress: '深圳市南山区深南大道10000号',
+    },
+    杭州市西湖区文三路259号: {
+      lat: 30.2741,
+      lng: 120.1551,
+      formattedAddress: '杭州市西湖区文三路259号',
+    },
+    成都市锦江区红星路三段1号: {
+      lat: 30.5728,
+      lng: 104.0668,
+      formattedAddress: '成都市锦江区红星路三段1号',
+    },
+    武汉市江汉区解放大道634号: {
+      lat: 30.5928,
+      lng: 114.3055,
+      formattedAddress: '武汉市江汉区解放大道634号',
+    },
+    西安市雁塔区高新路25号: {
+      lat: 34.3416,
+      lng: 108.9398,
+      formattedAddress: '西安市雁塔区高新路25号',
+    },
   };
 
   // 模拟网络延迟
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   const result = mockGeocoding[address as keyof typeof mockGeocoding];
   if (result) {
@@ -102,14 +142,17 @@ export const geocodeAddress = async (address: string): Promise<{
 };
 
 // 反向地理编码服务（模拟）
-export const reverseGeocode = async (lat: number, lng: number): Promise<{
+export const reverseGeocode = async (
+  lat: number,
+  lng: number,
+): Promise<{
   address: string;
   city: string;
   country: string;
 }> => {
   // 这里应该调用真实的反向地理编码API
   // 暂时返回模拟数据
-  await new Promise(resolve => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 300));
 
   return {
     address: `位置 (${lat.toFixed(4)}, ${lng.toFixed(4)})`,
@@ -125,21 +168,50 @@ export const getHospitalTypes = async (): Promise<string[]> => {
 
 // 获取医院等级列表
 export const getHospitalLevels = async (): Promise<string[]> => {
-  return ['三级甲等', '三级乙等', '二级甲等', '二级乙等', '一级甲等', '一级乙等'];
+  return [
+    '三级甲等',
+    '三级乙等',
+    '二级甲等',
+    '二级乙等',
+    '一级甲等',
+    '一级乙等',
+  ];
 };
 
 // 获取专科列表
 export const getSpecialties = async (): Promise<string[]> => {
   return [
-    '内科', '外科', '妇产科', '儿科', '眼科', '耳鼻喉科', '口腔科', '皮肤科',
-    '神经科', '精神科', '传染科', '肿瘤科', '急诊科', '康复科', '中医科',
-    '骨科', '泌尿科', '心血管科', '呼吸科', '消化科', '内分泌科', '血液科',
+    '内科',
+    '外科',
+    '妇产科',
+    '儿科',
+    '眼科',
+    '耳鼻喉科',
+    '口腔科',
+    '皮肤科',
+    '神经科',
+    '精神科',
+    '传染科',
+    '肿瘤科',
+    '急诊科',
+    '康复科',
+    '中医科',
+    '骨科',
+    '泌尿科',
+    '心血管科',
+    '呼吸科',
+    '消化科',
+    '内分泌科',
+    '血液科',
   ];
 };
 
 // 缓存管理
 class CacheManager {
-  private cache = new Map<string, { data: any; timestamp: number; ttl: number }>();
+  private cache = new Map<
+    string,
+    { data: any; timestamp: number; ttl: number }
+  >();
 
   set(key: string, data: any, ttl: number = 5 * 60 * 1000): void {
     this.cache.set(key, {
