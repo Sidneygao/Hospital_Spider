@@ -66,7 +66,7 @@
 2. **配置环境变量**
    创建 `.env` 文件：
    ```
-   GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   GOOGLE_MAPS_API_KEY=your_google_maps_api_key  # 必须通过环境变量配置，严禁在代码和配置文件中明文出现API Key
    PORT=8080
    ```
 

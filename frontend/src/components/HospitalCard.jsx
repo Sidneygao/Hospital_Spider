@@ -2,9 +2,12 @@ import React from 'react';
 import { Card } from 'antd';
 import './HospitalCard.css';
 
-export default function HospitalCard({ hospital }) {
+export default function HospitalCard({ hospital, onClick }) {
   return (
-    <Card className="hospital-card-aero" hoverable>
+    <Card className="hospital-card-aero" hoverable onClick={onClick}>
+      {hospital._sample && (
+        <div style={{color:'#d32f2f',fontWeight:'bold',marginBottom:8,fontSize:15}}>兜底SAMPLE数据</div>
+      )}
       <div className="card-title">{hospital.name}</div>
       <div className="card-info">{hospital.address}</div>
       <div className="card-meta">

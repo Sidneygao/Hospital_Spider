@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 )
@@ -64,7 +65,8 @@ type HospitalSpider struct {
 }
 
 // 创建新的爬虫实例
-func NewHospitalSpider(apiKey string) *HospitalSpider {
+func NewHospitalSpider() *HospitalSpider {
+	apiKey := os.Getenv("GOOGLE_MAPS_API_KEY")
 	return &HospitalSpider{
 		config: SpiderConfig{
 			GoogleMapsAPIKey:    apiKey,

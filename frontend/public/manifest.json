@@ -1,0 +1,9 @@
+{
+  "name": "Hospital Spider",
+  "short_name": "HospitalSpider",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "医院智能推荐平台",
+  "icons": []
+} 

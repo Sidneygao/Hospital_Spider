@@ -1,15 +1,25 @@
 package main
 
 import (
+	"bytes" // 用于将body重新包装为io.Reader
 	"database/sql"
 	"fmt"
-	"log"
+	"io"  // 用于读取HTTP响应体
+	"log" // 用于输出日志
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
+
+	"encoding/json"
+	"io/ioutil"
+	"os"
+
+	"net/url"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -88,7 +98,12 @@ type FeedbackResponse struct {
 var db *sql.DB
 
 func main() {
-	fmt.Println("Starting Hospital Spider Backend...")
+	// 自动加载.env文件
+	_ = godotenv.Load(".env")
+	fmt.Println("AMAP_KEY from env:", os.Getenv("AMAP_KEY"))
+
+	// 启动时健康检查AMAP_KEY
+	checkAmapKeyHealth()
 
 	// 初始化数据库
 	initDB()
@@ -98,6 +113,17 @@ func main() {
 
 	// 创建 Gin 路由
 	r := gin.Default()
+
+	// 全局recover，捕获所有panic
+	r.Use(func(c *gin.Context) {
+		defer func() {
+			if err := recover(); err != nil {
+				log.Printf("[全局Panic捕获] %+v", err)
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err})
+			}
+		}()
+		c.Next()
+	})
 
 	// 配置 CORS
 	config := cors.DefaultConfig()
@@ -116,11 +142,14 @@ func main() {
 
 		// 用户反馈 API
 		api.POST("/hospitals/:id/feedback", submitFeedback)
+		api.GET("/places/hospitals", getNearbyHospitals)
 	}
 
 	// 启动服务器
 	fmt.Println("Server starting on http://localhost:8080")
 	fmt.Println("Press Ctrl+C to stop the server")
+	r.GET("/api/amap/geo", AmapGeoProxy)
+	r.GET("/api/amap/around", AmapAroundProxy)
 	r.Run(":8080")
 }
 
@@ -211,40 +240,18 @@ func insertSampleData() {
 		return // 已有数据，不重复插入
 	}
 
-	// 插入示例医院数据
+	// 只插入北京大学第三医院
 	hospitals := []Hospital{
 		{
-			Name:            "曼谷医院",
-			Address:         "2 Soi Soonvijai 7, New Petchburi Rd, Bangkok 10310",
-			Latitude:        13.7563,
-			Longitude:       100.5018,
-			Phone:           "+66 2 310 3000",
-			HospitalType:    "综合医院",
-			MainDepartments: "内科,外科,妇产科,儿科",
+			Name:            "北京大学第三医院",
+			Address:         "北京市海淀区花园北路49号",
+			Latitude:        39.9753,
+			Longitude:       116.3541,
+			Phone:           "010-82266699",
+			HospitalType:    "综合性三级甲等",
+			MainDepartments: "综合医疗、教学、科研",
 			BusinessHours:   "24小时营业",
-			Qualifications:  "JCI认证,ISO认证",
-		},
-		{
-			Name:            "康民国际医院",
-			Address:         "33 Sukhumvit 3, Khlong Toei Nuea, Watthana, Bangkok 10110",
-			Latitude:        13.7383,
-			Longitude:       100.5608,
-			Phone:           "+66 2 066 8888",
-			HospitalType:    "综合医院",
-			MainDepartments: "心脏科,神经科,肿瘤科",
-			BusinessHours:   "24小时营业",
-			Qualifications:  "JCI认证,泰国卫生部认证",
-		},
-		{
-			Name:            "三美泰医院",
-			Address:         "488 Silom Road, Bangkok 10500",
-			Latitude:        13.7246,
-			Longitude:       100.5276,
-			Phone:           "+66 2 711 8000",
-			HospitalType:    "专科医院",
-			MainDepartments: "妇产科,儿科,整形外科",
-			BusinessHours:   "周一至周日 8:00-20:00",
-			Qualifications:  "ISO认证,泰国卫生部认证",
+			Qualifications:  "三级甲等, 北京大学直属, 综合医院",
 		},
 	}
 
@@ -256,27 +263,6 @@ func insertSampleData() {
 
 		if err != nil {
 			log.Printf("Error inserting hospital: %v", err)
-		}
-	}
-
-	// 插入示例评分数据
-	ratings := []Rating{
-		{HospitalID: 1, Source: "官方评级", RatingValue: 4.8, Confidence: 0.95},
-		{HospitalID: 1, Source: "用户评分", RatingValue: 4.5, Confidence: 0.85},
-		{HospitalID: 2, Source: "官方评级", RatingValue: 4.9, Confidence: 0.98},
-		{HospitalID: 2, Source: "用户评分", RatingValue: 4.7, Confidence: 0.90},
-		{HospitalID: 3, Source: "官方评级", RatingValue: 4.6, Confidence: 0.92},
-		{HospitalID: 3, Source: "用户评分", RatingValue: 4.3, Confidence: 0.80},
-	}
-
-	for _, rating := range ratings {
-		_, err := db.Exec(`
-			INSERT INTO ratings (hospital_id, source, rating_value, confidence)
-			VALUES (?, ?, ?, ?)
-		`, rating.HospitalID, rating.Source, rating.RatingValue, rating.Confidence)
-
-		if err != nil {
-			log.Printf("Error inserting rating: %v", err)
 		}
 	}
 }
@@ -494,6 +480,156 @@ func submitFeedback(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
+// 获取附近医院 (代理 Google Places API)
+func getNearbyHospitals(c *gin.Context) {
+	lat := c.Query("lat")
+	lng := c.Query("lng")
+	if lat == "" || lng == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "lat/lng required"})
+		return
+	}
+	apiKey := os.Getenv("GOOGLE_MAPS_API_KEY")
+	url := "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=5000&type=hospital&key=" + apiKey
+	log.Printf("[GoogleAPI] 请求URL: %s", url)
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Printf("[GoogleAPI] http.Get错误: %v", err)
+		// 兜底SAMPLE
+		c.JSON(http.StatusOK, gin.H{
+			"results": []gin.H{
+				{
+					"id":        "sample1",
+					"name":      "SAMPLE兜底医院",
+					"latitude":  lat,
+					"longitude": lng,
+					"address":   "SAMPLE地址",
+					"_sample":   true,
+				},
+			},
+			"isSample":     true,
+			"sampleReason": "Google API请求失败，返回兜底SAMPLE",
+		})
+		return
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("[GoogleAPI] 读取响应体失败: %v", err)
+		c.JSON(http.StatusOK, gin.H{
+			"results": []gin.H{
+				{
+					"id":        "sample1",
+					"name":      "SAMPLE兜底医院",
+					"latitude":  lat,
+					"longitude": lng,
+					"address":   "SAMPLE地址",
+					"_sample":   true,
+				},
+			},
+			"isSample":     true,
+			"sampleReason": "Google API响应体读取失败，返回兜底SAMPLE",
+		})
+		return
+	}
+	if resp.StatusCode != 200 {
+		log.Printf("[GoogleAPI] HTTP状态码: %d, 响应体: %s", resp.StatusCode, string(body))
+		c.JSON(http.StatusOK, gin.H{
+			"results": []gin.H{
+				{
+					"id":        "sample1",
+					"name":      "SAMPLE兜底医院",
+					"latitude":  lat,
+					"longitude": lng,
+					"address":   "SAMPLE地址",
+					"_sample":   true,
+				},
+			},
+			"isSample":     true,
+			"sampleReason": "Google API返回非200，返回兜底SAMPLE",
+		})
+		return
+	}
+	var result map[string]interface{}
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		log.Printf("[GoogleAPI] JSON解析失败: %v, body: %s", err, string(body))
+		c.JSON(http.StatusOK, gin.H{
+			"results": []gin.H{
+				{
+					"id":        "sample1",
+					"name":      "SAMPLE兜底医院",
+					"latitude":  lat,
+					"longitude": lng,
+					"address":   "SAMPLE地址",
+					"_sample":   true,
+				},
+			},
+			"isSample":     true,
+			"sampleReason": "Google API响应JSON解析失败，返回兜底SAMPLE",
+		})
+		return
+	}
+	if status, ok := result["status"]; ok && status != "OK" && status != "ZERO_RESULTS" {
+		log.Printf("[GoogleAPI] status: %v, error_message: %v, body: %s", status, result["error_message"], string(body))
+		c.JSON(http.StatusOK, gin.H{
+			"results": []gin.H{
+				{
+					"id":        "sample1",
+					"name":      "SAMPLE兜底医院",
+					"latitude":  lat,
+					"longitude": lng,
+					"address":   "SAMPLE地址",
+					"_sample":   true,
+				},
+			},
+			"isSample":     true,
+			"sampleReason": "Google API返回错误，返回兜底SAMPLE",
+		})
+		return
+	}
+	// 正常返回Google API原始数据
+	c.Data(http.StatusOK, "application/json", body)
+}
+
+func PlacesSearchHandler(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query().Get("query")
+	if query == "" {
+		http.Error(w, "query参数不能为空", http.StatusBadRequest)
+		return
+	}
+	apiKey := os.Getenv("GOOGLE_MAPS_API_KEY")
+	url := fmt.Sprintf("https://maps.googleapis.com/maps/api/place/textsearch/json?query=%%s&key=%%s", query, apiKey)
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, "请求Google Places API失败", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(body)
+}
+
+func StaticMapHandler(w http.ResponseWriter, r *http.Request) {
+	center := r.URL.Query().Get("center")
+	zoom := r.URL.Query().Get("zoom")
+	size := r.URL.Query().Get("size")
+	if center == "" || zoom == "" || size == "" {
+		http.Error(w, "参数不全", http.StatusBadRequest)
+		return
+	}
+	apiKey := os.Getenv("GOOGLE_MAPS_API_KEY")
+	url := fmt.Sprintf("https://maps.googleapis.com/maps/api/staticmap?center=%%s&zoom=%%s&size=%%s&key=%%s", center, zoom, size, apiKey)
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, "请求Google Static Maps API失败", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+	w.Header().Set("Content-Type", "image/png")
+	io.Copy(w, resp.Body)
+}
+
 // 计算两点间距离（简化版，使用欧几里得距离）
 func calculateDistance(lat1, lng1, lat2, lng2 float64) float64 {
 	// 这里应该使用 Haversine 公式计算真实地理距离
@@ -519,4 +655,118 @@ func getHospitalRating(hospitalID int) (float64, float64) {
 
 	return avgRating, avgConfidence
 }
- 
+
+// 高德地理编码代理接口
+func AmapGeoProxy(c *gin.Context) {
+	log.Printf("[AmapGeoProxy] 收到请求: %s %s, 参数: %v", c.Request.Method, c.Request.URL.String(), c.Request.URL.Query())
+	address := c.Query("address")
+	if address == "" {
+		log.Printf("[AmapGeoProxy][参数异常] address参数缺失")
+		c.JSON(400, gin.H{"error": "address参数缺失"})
+		return
+	}
+	key := os.Getenv("AMAP_KEY")
+	if key == "" {
+		log.Println("[AmapGeoProxy] AMAP_KEY not set in backend env")
+		c.JSON(500, gin.H{"error": "AMAP_KEY not set in backend env"})
+		return
+	}
+	amapUrl := "https://restapi.amap.com/v3/geocode/geo?address=" + url.QueryEscape(address) + "&key=" + key
+	log.Println("[AmapGeoProxy] 请求URL:", amapUrl)
+	resp, err := http.Get(amapUrl)
+	if err != nil {
+		log.Println("[AmapGeoProxy] amap request failed:", err)
+		c.JSON(500, gin.H{"error": "amap request failed", "detail": err.Error()})
+		return
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("[AmapGeoProxy] 读取响应体失败: %v", err)
+		c.JSON(500, gin.H{"error": "amap response body read failed", "detail": err.Error()})
+		return
+	}
+	log.Printf("[AmapGeoProxy] HTTP状态码: %d, 响应体: %s", resp.StatusCode, string(body))
+	// 自动解析高德API响应码
+	var amapResp map[string]interface{}
+	json.Unmarshal(body, &amapResp)
+	if status, ok := amapResp["status"]; ok && status != "1" {
+		log.Printf("[AmapGeoProxy][高德API异常] status: %v, info: %v, infocode: %v, body: %s", status, amapResp["info"], amapResp["infocode"], string(body))
+	}
+	if resp.StatusCode != 200 {
+		c.JSON(500, gin.H{"error": "amap api status not 200", "status": resp.StatusCode, "body": string(body)})
+		return
+	}
+	log.Println("[AmapGeoProxy] 高德原始响应:", string(body))
+	c.DataFromReader(resp.StatusCode, int64(len(body)), resp.Header.Get("Content-Type"), io.NopCloser(bytes.NewReader(body)), nil)
+}
+
+// 高德周边医院搜索代理接口
+func AmapAroundProxy(c *gin.Context) {
+	log.Printf("[AmapAroundProxy] 收到请求: %s %s, 参数: %v", c.Request.Method, c.Request.URL.String(), c.Request.URL.Query())
+	location := c.Query("location")
+	if location == "" || !strings.Contains(location, ",") {
+		log.Printf("[AmapAroundProxy][参数异常] location参数缺失或格式错误: %s", location)
+		c.JSON(400, gin.H{"error": "location参数缺失或格式错误"})
+		return
+	}
+	radius := c.DefaultQuery("radius", "5000")
+	types := c.DefaultQuery("types", "090000")
+	key := os.Getenv("AMAP_KEY")
+	if key == "" {
+		log.Println("[AmapAroundProxy] AMAP_KEY not set in backend env")
+		c.JSON(500, gin.H{"error": "AMAP_KEY not set in backend env"})
+		return
+	}
+	// 修复：将逗号分隔的types转为竖线分隔
+	types = strings.ReplaceAll(types, ",", "|")
+	log.Println("[AmapAroundProxy] 参数:", "location=", location, "radius=", radius, "types=", types)
+	amapUrl := "https://restapi.amap.com/v3/place/around?key=" + key + "&location=" + url.QueryEscape(location) + "&radius=" + url.QueryEscape(radius)
+	if types != "" {
+		amapUrl += "&types=" + url.QueryEscape(types)
+	}
+	log.Println("[AmapAroundProxy] 请求URL:", amapUrl)
+	resp, err := http.Get(amapUrl)
+	if err != nil {
+		log.Println("[AmapAroundProxy] amap request failed:", err)
+		c.JSON(500, gin.H{"error": "amap request failed", "detail": err.Error()})
+		return
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Printf("[AmapAroundProxy] 读取响应体失败: %v", err)
+		c.JSON(500, gin.H{"error": "amap response body read failed", "detail": err.Error()})
+		return
+	}
+	log.Printf("[AmapAroundProxy] HTTP状态码: %d, 响应体: %s", resp.StatusCode, string(body))
+	// 自动解析高德API响应码
+	var amapResp map[string]interface{}
+	json.Unmarshal(body, &amapResp)
+	if status, ok := amapResp["status"]; ok && status != "1" {
+		log.Printf("[AmapAroundProxy][高德API异常] status: %v, info: %v, infocode: %v, body: %s", status, amapResp["info"], amapResp["infocode"], string(body))
+	}
+	if resp.StatusCode != 200 {
+		c.JSON(500, gin.H{"error": "amap api status not 200", "status": resp.StatusCode, "body": string(body)})
+		return
+	}
+	log.Println("[AmapAroundProxy] 高德原始响应:", string(body))
+	c.DataFromReader(resp.StatusCode, int64(len(body)), resp.Header.Get("Content-Type"), io.NopCloser(bytes.NewReader(body)), nil)
+}
+
+func checkAmapKeyHealth() {
+	key := os.Getenv("AMAP_KEY")
+	if key == "" {
+		log.Println("[健康检查] AMAP_KEY未设置")
+		return
+	}
+	testUrl := "https://restapi.amap.com/v3/geocode/geo?address=北京&key=" + key
+	resp, err := http.Get(testUrl)
+	if err != nil {
+		log.Println("[健康检查] 高德API请求失败:", err)
+		return
+	}
+	defer resp.Body.Close()
+	body, _ := io.ReadAll(resp.Body)
+	log.Printf("[健康检查] 高德API响应: %s", string(body))
+}

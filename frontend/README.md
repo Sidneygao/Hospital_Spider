@@ -33,7 +33,7 @@ npm install
 REACT_APP_API_BASE_URL=http://localhost:3000/api
 
 # Google Maps API 配置
-REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
+REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here  # 必须通过环境变量配置，严禁在代码和配置文件中明文出现API Key
 
 # 应用配置
 REACT_APP_NAME=医院智能推荐系统
