@@ -26,4 +26,20 @@
   color: #333;
   font-size: 0.98rem;
   margin-top: 4px;
+}
+
+.hospital-card-title-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.hospital-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.hospital-card-level {
+  color: #1976d2;
+  font-weight: bold;
+  margin-left: 12px;
+  font-size: 16px;
 } 

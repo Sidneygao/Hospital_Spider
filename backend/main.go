@@ -706,52 +706,48 @@ func AmapAroundProxy(c *gin.Context) {
 	log.Printf("[AmapAroundProxy] 收到请求: %s %s, 参数: %v", c.Request.Method, c.Request.URL.String(), c.Request.URL.Query())
 	location := c.Query("location")
 	if location == "" || !strings.Contains(location, ",") {
-		log.Printf("[AmapAroundProxy][参数异常] location参数缺失或格式错误: %s", location)
 		c.JSON(400, gin.H{"error": "location参数缺失或格式错误"})
 		return
 	}
 	radius := c.DefaultQuery("radius", "5000")
-	types := c.DefaultQuery("types", "090000")
 	key := os.Getenv("AMAP_KEY")
 	if key == "" {
-		log.Println("[AmapAroundProxy] AMAP_KEY not set in backend env")
 		c.JSON(500, gin.H{"error": "AMAP_KEY not set in backend env"})
 		return
 	}
-	// 修复：将逗号分隔的types转为竖线分隔
-	types = strings.ReplaceAll(types, ",", "|")
-	log.Println("[AmapAroundProxy] 参数:", "location=", location, "radius=", radius, "types=", types)
-	amapUrl := "https://restapi.amap.com/v3/place/around?key=" + key + "&location=" + url.QueryEscape(location) + "&radius=" + url.QueryEscape(radius)
-	if types != "" {
-		amapUrl += "&types=" + url.QueryEscape(types)
-	}
-	log.Println("[AmapAroundProxy] 请求URL:", amapUrl)
+
+	// 只用types=090000单一请求，彻底回退
+	amapUrl := fmt.Sprintf("https://restapi.amap.com/v3/place/around?key=%s&location=%s&radius=%s&types=090000", key, location, radius)
 	resp, err := http.Get(amapUrl)
 	if err != nil {
-		log.Println("[AmapAroundProxy] amap request failed:", err)
-		c.JSON(500, gin.H{"error": "amap request failed", "detail": err.Error()})
+		log.Printf("[AmapAroundProxy][主请求失败] err=%v", err)
+		c.JSON(500, gin.H{"error": "高德主请求失败"})
 		return
 	}
-	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Printf("[AmapAroundProxy] 读取响应体失败: %v", err)
-		c.JSON(500, gin.H{"error": "amap response body read failed", "detail": err.Error()})
-		return
-	}
-	log.Printf("[AmapAroundProxy] HTTP状态码: %d, 响应体: %s", resp.StatusCode, string(body))
-	// 自动解析高德API响应码
+	body, _ := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
 	var amapResp map[string]interface{}
 	json.Unmarshal(body, &amapResp)
-	if status, ok := amapResp["status"]; ok && status != "1" {
-		log.Printf("[AmapAroundProxy][高德API异常] status: %v, info: %v, infocode: %v, body: %s", status, amapResp["info"], amapResp["infocode"], string(body))
+	pois, _ := amapResp["pois"].([]interface{})
+
+	// 自动过滤typecode不是0901/0902/0903/0904开头的POI
+	var filteredPois []interface{}
+	for _, poi := range pois {
+		m, ok := poi.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		typecode, _ := m["typecode"].(string)
+		if strings.HasPrefix(typecode, "0901") || strings.HasPrefix(typecode, "0902") || strings.HasPrefix(typecode, "0903") || strings.HasPrefix(typecode, "0904") {
+			filteredPois = append(filteredPois, poi)
+		}
 	}
-	if resp.StatusCode != 200 {
-		c.JSON(500, gin.H{"error": "amap api status not 200", "status": resp.StatusCode, "body": string(body)})
-		return
-	}
-	log.Println("[AmapAroundProxy] 高德原始响应:", string(body))
-	c.DataFromReader(resp.StatusCode, int64(len(body)), resp.Header.Get("Content-Type"), io.NopCloser(bytes.NewReader(body)), nil)
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": "1",
+		"count":  len(filteredPois),
+		"pois":   filteredPois,
+	})
 }
 
 func checkAmapKeyHealth() {
