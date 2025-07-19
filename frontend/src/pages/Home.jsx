@@ -179,14 +179,14 @@ const sortHospitals = (hospitals) => {
     // 优先使用后端返回的排序字段
     const orderA = a.algo_display_order || 99;
     const orderB = b.algo_display_order || 99;
-    
+
     // 如果排序字段相同，按距离排序（离观测点越近越靠前）
     if (orderA === orderB) {
       const distanceA = a.distance || 999;
       const distanceB = b.distance || 999;
       return distanceA - distanceB;
     }
-    
+
     return orderA - orderB;
   });
 };
@@ -355,22 +355,43 @@ export default function Home() {
     const filtered = filterHospitals(hospitals);
     const markers = [];
     filtered.forEach(hospital => {
-      // 严格按hospital_category（小表第四列）适配icon
-      let icon = redCrossNormal, size = [24, 24]; // Changed from 32 to 24
+      // 根据algo_icon_type设置正确的图标
+      let icon = redCrossNormal, size = [24, 24];
+      const iconType = hospital.algo_icon_type || '';
       const cat = hospital.algo_hospital_category || '';
-      if (cat.includes('三级甲等')) { icon = redCrossBold; size = [27, 27]; } // Changed from 36 to 27
-      else if (cat.includes('综合医院')) { icon = redCrossNormal; size = [27, 27]; } // Changed from 36 to 27
-      else if (cat.includes('专科医院')) { icon = redCrossBold; size = [18, 18]; } // Changed from 24 to 18
-      else if (cat.includes('卫生院') || cat.includes('社区')) { icon = redCrossNormal; size = [18, 18]; } // Changed from 24 to 18
-      // 牙科特殊处理
-      if (hospital.type && (hospital.type.includes('口腔') || hospital.type.includes('牙科'))) {
-        icon = toothPng; size = [18, 18];
+
+      // 严格按照后端返回的algo_icon_type设置图标
+      if (iconType === 'icon_tier3_hospital_bold') {
+        icon = redCrossBold;
+        size = [27, 27];
       }
+      else if (iconType === 'icon_general_hospital_bold') {
+        icon = redCrossBold;
+        size = [27, 27];
+      }
+      else if (iconType === 'icon_small_red_cross_bold') {
+        icon = redCrossBold;
+        size = [20, 20];
+      }
+      else if (iconType === 'icon_small_red_cross_normal') {
+        icon = redCrossNormal;
+        size = [16, 16];
+      }
+      else if (iconType === 'icon_tooth') {
+        icon = toothPng;
+        size = [18, 18];
+      }
+      else if (iconType === 'icon_er') {
+        icon = redCrossNormal;
+        size = [18, 18];
+      }
+
       // 医院级别高亮
       let level = '';
-      if (hospital.type.match(/(三级甲等|三甲|二级甲等|三级|二级|一级)/)) {
+      if (hospital.type && hospital.type.match(/(三级甲等|三甲|二级甲等|三级|二级|一级)/)) {
         level = hospital.type.match(/(三级甲等|三甲|二级甲等|三级|二级|一级)/)[0];
       }
+
       const marker = new window.AMap.Marker({
         position: [hospital.longitude, hospital.latitude],
         map,
@@ -383,13 +404,32 @@ export default function Home() {
         }),
         offset: new window.AMap.Pixel(-size[0]/2, -size[1]/2),
       });
+
       const info = new window.AMap.InfoWindow({
-        content: `<b>${hospital.name}${level ? ` <span style='color:#d32f2f;font-weight:bold'>${level}</span>` : ''}</b><br/>${hospital.address}`,
+        content: `<b>${hospital.name}${level ? ` <span style='color:#d32f2f;font-weight:bold'>${level}</span>` : ''}</b><br/>${hospital.address}<br/><span style='color:#666;font-size:12px'>类别：${cat}</span>`,
         offset: new window.AMap.Pixel(0, -30),
       });
+
       marker.on('mouseover', () => info.open(map, marker.getPosition()));
       marker.on('mouseout', () => info.close());
-      marker.on('click', () => info.open(map, marker.getPosition()));
+
+      // 添加点击事件：点击地图热点转到对应卡片
+      marker.on('click', () => {
+        info.open(map, marker.getPosition());
+        // 滚动到对应的医院卡片
+        const hospitalCard = document.querySelector(`[data-hospital-id="${hospital.id}"]`);
+        if (hospitalCard) {
+          hospitalCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // 高亮卡片
+          hospitalCard.style.border = '2px solid #d32f2f';
+          hospitalCard.style.boxShadow = '0 4px 12px rgba(211, 47, 47, 0.3)';
+          setTimeout(() => {
+            hospitalCard.style.border = '';
+            hospitalCard.style.boxShadow = '';
+          }, 3000);
+        }
+      });
+
       markers.push(marker);
     });
     // 综合医院识别更宽泛，type和name字段都用正则/(三甲|三级甲等|综合|协和)/i
@@ -569,7 +609,7 @@ export default function Home() {
           setSearchLatLng(newLoc); // 同步更新searchLatLng，保证地图和医院数据都以新定位为中心
           setLoadingLoc(false);
           message.success('定位成功');
-          
+
           // 立即重新获取医院数据，不依赖useEffect的异步更新
           console.log('定位后立即重新获取医院数据...');
           setLoading(true);
@@ -681,6 +721,7 @@ export default function Home() {
     }
     setLoading(true);
     let newSearchLatLng = location;
+
     // 若有address，先用高德地理编码API获取经纬度
     if (address) {
       try {
@@ -698,13 +739,16 @@ export default function Home() {
         message.error('高德地理编码失败，已用当前位置');
       }
     }
-    setSearchLatLng(newSearchLatLng); // 新增，确保searchLatLng同步
+
+    // 确保使用最新的位置
+    setSearchLatLng(newSearchLatLng);
     console.log('搜索位置:', newSearchLatLng);
-    
-    // 立即获取医院数据，不依赖useEffect
+
+    // 立即获取医院数据，强制重新调用API
     try {
-      // 优先使用合并POI API
-      const mergedRes = await fetch(`/api/merged-pois?location=${newSearchLatLng.lng},${newSearchLatLng.lat}&radius=5000`);
+      // 优先使用合并POI API，添加时间戳避免缓存
+      const timestamp = Date.now();
+      const mergedRes = await fetch(`/api/merged-pois?location=${newSearchLatLng.lng},${newSearchLatLng.lat}&radius=5000&t=${timestamp}`);
       console.log('搜索时合并POI API响应状态:', mergedRes.status);
       if (mergedRes.ok) {
         const mergedData = await mergedRes.json();
@@ -746,9 +790,10 @@ export default function Home() {
           return;
         }
       }
-      // 兜底：高德API
-      const amapKey = process.env.REACT_APP_AMAP_KEY;
-      const poisRes = await fetch(`/api/amap/around?location=${newSearchLatLng.lng},${newSearchLatLng.lat}&radius=5000`);
+
+      // 兜底：高德API，添加时间戳避免缓存
+      const timestamp2 = Date.now();
+      const poisRes = await fetch(`/api/amap/around?location=${newSearchLatLng.lng},${newSearchLatLng.lat}&radius=5000&t=${timestamp2}`);
       const poisData = await poisRes.json();
       if (poisData.status === '1' && poisData.pois && poisData.pois.length > 0) {
         const pois = poisData.pois.filter(poi => {
@@ -785,6 +830,105 @@ export default function Home() {
       }
     } catch (e) {
       console.error('搜索时获取医院数据失败:', e);
+      setHospitals([]);
+      setIsSample(false);
+      message.error('医院数据获取失败，请稍后再试。');
+    }
+    setLoading(false);
+  };
+
+  // 刷新功能：强制重新获取当前位置的医院数据
+  const handleRefresh = async () => {
+    if (!location) {
+      message.warning('请先定位');
+      return;
+    }
+    setLoading(true);
+    console.log('刷新位置:', location);
+
+    try {
+      // 强制重新调用合并POI API
+      const timestamp = Date.now();
+      const mergedRes = await fetch(`/api/merged-pois?location=${location.lng},${location.lat}&radius=5000&t=${timestamp}`);
+      console.log('刷新时合并POI API响应状态:', mergedRes.status);
+      if (mergedRes.ok) {
+        const mergedData = await mergedRes.json();
+        console.log('刷新时合并POI API返回数据:', mergedData);
+        if (mergedData.pois && mergedData.pois.length > 0) {
+          const hospitals = mergedData.pois.map((poi, idx) => {
+            const hospital = {
+              id: poi.id || idx,
+              name: poi.name,
+              address: poi.address,
+              latitude: poi.location_lat || (poi.location && parseFloat((`${poi.location}`).split(',')[1])),
+              longitude: poi.location_lng || (poi.location && parseFloat((`${poi.location}`).split(',')[0])),
+              type: poi.type,
+              algo_hospital_category: poi.algo_hospital_category,
+              algo_icon_type: poi.algo_icon_type,
+              algo_display_order: poi.algo_display_order,
+              typecode: poi.typecode || '未知',
+              childtype: poi.childtype || '未知',
+              rating: 0,
+              distance: poi.distance ? parseFloat(poi.distance) / 1000 : 0,
+              phone: poi.tel,
+              website: poi.website,
+              tags: poi.tags,
+              intro: poi.intro,
+              _sample: poi._sample,
+            };
+            console.log(`刷新时医院 ${hospital.name} 的typecode:`, hospital.typecode, 'childtype:', hospital.childtype);
+            return hospital;
+          });
+          setHospitals(
+            hospitals
+              .filter(h => !!h.algo_hospital_category && typeof h.algo_hospital_category === 'string' && h.algo_hospital_category.trim() !== '' && h.algo_hospital_category !== '无' && h.algo_hospital_category !== 'null')
+              .filter(h => !(h.tags && h.tags.includes('OptOut'))),
+          );
+          setIsSample(false);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // 兜底：高德API
+      const timestamp2 = Date.now();
+      const poisRes = await fetch(`/api/amap/around?location=${location.lng},${location.lat}&radius=5000&t=${timestamp2}`);
+      const poisData = await poisRes.json();
+      if (poisData.status === '1' && poisData.pois && poisData.pois.length > 0) {
+        const pois = poisData.pois.filter(poi => {
+          const text = (poi.name || '') + (poi.type || '') + (poi.address || '');
+          return !excludeKeywords.some(keyword => text.includes(keyword));
+        });
+        const hospitals = dedupHospitals(pois.map((poi, idx) => ({
+          id: poi.id || idx,
+          name: poi.name,
+          address: poi.address,
+          latitude: parseFloat(poi.location.split(',')[1]),
+          longitude: parseFloat(poi.location.split(',')[0]),
+          type: poi.type,
+          algo_hospital_category: poi.hospital_category,
+          algo_icon_type: poi.icon_type,
+          rating: 0,
+          distance: poi.distance ? parseFloat(poi.distance) / 1000 : 0,
+          phone: poi.tel,
+          website: '',
+          tags: [poi.type],
+          intro: poi.name + (poi.type ? `（${poi.type}）` : ''),
+          _sample: false,
+        })));
+        setHospitals(
+          hospitals
+            .filter(h => h.algo_hospital_category && h.algo_hospital_category !== '')
+            .filter(h => !(h.tags && h.tags.includes('OptOut'))),
+        );
+        setIsSample(false);
+      } else {
+        setHospitals([]);
+        setIsSample(false);
+        message.warning('刷新后无医院数据，请尝试其他位置。');
+      }
+    } catch (e) {
+      console.error('刷新时获取医院数据失败:', e);
       setHospitals([]);
       setIsSample(false);
       message.error('医院数据获取失败，请稍后再试。');
@@ -856,7 +1000,7 @@ export default function Home() {
         <Button
           className="home-search-btn"
           icon={<ReloadOutlined />}
-          onClick={handleSearch}
+          onClick={handleRefresh}
         >刷新</Button>
       </div>
       <div className="home-map-section">

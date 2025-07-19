@@ -846,8 +846,18 @@ func AmapAroundProxy(c *gin.Context) {
 		}
 		tc1, _ := poi1["typecode"].(string)
 		childtype1, _ := poi1["childtype"]
+		// 改进：更准确的childtype空值判断
+		isChildtype1Empty := false
+		if childtype1 == nil || childtype1 == "" {
+			isChildtype1Empty = true
+		} else if arr, ok := childtype1.([]interface{}); ok && len(arr) == 0 {
+			isChildtype1Empty = true
+		} else if arr, ok := childtype1.([]string); ok && len(arr) == 0 {
+			isChildtype1Empty = true
+		}
+
 		// 只对满足如下条件的POI参与合并
-		if (tc1 == "090101" && (childtype1 == nil || childtype1 == "")) ||
+		if (tc1 == "090101" && isChildtype1Empty) ||
 			strings.HasPrefix(tc1, "0901") ||
 			strings.HasPrefix(tc1, "0902") ||
 			strings.HasPrefix(tc1, "0903") ||
@@ -864,19 +874,27 @@ func AmapAroundProxy(c *gin.Context) {
 			}
 			tc2, _ := poi2["typecode"].(string)
 			childtype2, _ := poi2["childtype"]
-			if tc2 == "090101" && !(childtype2 == nil || childtype2 == "") {
+
+			// 改进：更准确的childtype空值判断
+			isChildtype2Empty := false
+			if childtype2 == nil || childtype2 == "" {
+				isChildtype2Empty = true
+			} else if arr, ok := childtype2.([]interface{}); ok && len(arr) == 0 {
+				isChildtype2Empty = true
+			} else if arr, ok := childtype2.([]string); ok && len(arr) == 0 {
+				isChildtype2Empty = true
+			}
+
+			if tc2 == "090101" && !isChildtype2Empty {
 				continue // 090101且childtype不为空的，不参与合并
 			}
-			// 名称重叠判定
-			n1 := []rune(poi1["name"].(string))
-			n2 := []rune(poi2["name"].(string))
-			overlap := ""
-			for _, c := range n1 {
-				if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
-					overlap += string(c)
-				}
-			}
-			if len([]rune(overlap)) >= 4 {
+
+			// 改进名称重叠判定：优先检查完全相同的名称
+			name1, _ := poi1["name"].(string)
+			name2, _ := poi2["name"].(string)
+
+			// 如果名称完全相同，直接合并
+			if name1 == name2 {
 				// 距离判定
 				lat1, _ := parseFloatFromAny(poi1["location_lat"])
 				lng1, _ := parseFloatFromAny(poi1["location_lng"])
@@ -885,12 +903,11 @@ func AmapAroundProxy(c *gin.Context) {
 				if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
 					dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
 					if dist < duplicateDistanceThreshold {
-						// 合并为一个新POI，名称为重叠部分
+						// 合并为一个新POI，名称为原名称
 						merged := make(map[string]interface{})
 						for k, v := range poi1 {
 							merged[k] = v
 						}
-						merged["name"] = overlap
 						// 修正：typecode/childtype优先保留主POI的值，如无则补全
 						if merged["typecode"] == nil || merged["typecode"] == "" {
 							merged["typecode"] = poi2["typecode"]
@@ -902,6 +919,111 @@ func AmapAroundProxy(c *gin.Context) {
 						optOutIds[poi2["id"].(string)] = true
 						goto NextPoi
 					}
+				}
+			} else {
+				// 改进的字符重叠判定逻辑：更智能的医院名称匹配
+				name1, _ := poi1["name"].(string)
+				name2, _ := poi2["name"].(string)
+
+				// 方法1：检查是否包含相同的医院核心名称（如"东直门医院"）
+				coreNames := []string{"医院", "门诊", "诊所", "中心", "院区", "分院"}
+				hasCoreOverlap := false
+				for _, core := range coreNames {
+					if strings.Contains(name1, core) && strings.Contains(name2, core) {
+						// 提取核心名称前的部分进行比较
+						idx1 := strings.Index(name1, core)
+						idx2 := strings.Index(name2, core)
+						if idx1 > 0 && idx2 > 0 {
+							prefix1 := name1[:idx1]
+							prefix2 := name2[:idx2]
+							// 检查前缀是否有重叠
+							if len(prefix1) >= 2 && len(prefix2) >= 2 {
+								// 计算前缀的重叠字符数
+								overlapCount := 0
+								for _, c := range prefix1 {
+									if strings.ContainsRune(prefix2, c) {
+										overlapCount++
+									}
+								}
+								if overlapCount >= 2 { // 至少2个字符重叠
+									hasCoreOverlap = true
+									log.Printf("[合并算法] 核心名称匹配: %s 和 %s 通过 %s 匹配 (重叠字符数: %d)", name1, name2, core, overlapCount)
+									break
+								}
+							}
+						}
+					}
+				}
+
+				// 方法2：检查是否包含相同的医院名称片段（如"东直门"）
+				if !hasCoreOverlap {
+					hospitalNameFragments := []string{"东直门", "协和", "同仁", "天坛", "安贞", "积水潭", "友谊", "宣武", "朝阳", "海淀", "丰台", "石景山", "门头沟", "房山", "通州", "顺义", "昌平", "大兴", "怀柔", "平谷", "密云", "延庆"}
+					for _, fragment := range hospitalNameFragments {
+						if strings.Contains(name1, fragment) && strings.Contains(name2, fragment) {
+							hasCoreOverlap = true
+							log.Printf("[合并算法] 医院名称片段匹配: %s 和 %s 通过 %s 匹配", name1, name2, fragment)
+							break
+						}
+					}
+				}
+
+				// 方法3：原有的字符重叠判定逻辑（作为兜底）
+				n1 := []rune(name1)
+				n2 := []rune(name2)
+				overlap := ""
+				for _, c := range n1 {
+					if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
+						overlap += string(c)
+					}
+				}
+				charOverlapCount := len([]rune(overlap))
+
+				// 合并条件：核心名称重叠 或 字符重叠>=4
+				if hasCoreOverlap || charOverlapCount >= 4 {
+					log.Printf("[合并算法] 尝试合并: %s 和 %s (核心重叠: %v, 字符重叠: %d)", name1, name2, hasCoreOverlap, charOverlapCount)
+					// 距离判定
+					lat1, _ := parseFloatFromAny(poi1["location_lat"])
+					lng1, _ := parseFloatFromAny(poi1["location_lng"])
+					lat2, _ := parseFloatFromAny(poi2["location_lat"])
+					lng2, _ := parseFloatFromAny(poi2["location_lng"])
+					if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+						dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
+						if dist < duplicateDistanceThreshold {
+							// 合并为一个新POI，选择更简洁的名称
+							merged := make(map[string]interface{})
+							for k, v := range poi1 {
+								merged[k] = v
+							}
+
+							// 选择更简洁的名称作为合并后的名称
+							if len(name1) <= len(name2) {
+								merged["name"] = name1
+							} else {
+								merged["name"] = name2
+							}
+
+							// 修正：typecode/childtype优先保留主POI的值，如无则补全
+							if merged["typecode"] == nil || merged["typecode"] == "" {
+								merged["typecode"] = poi2["typecode"]
+							}
+							if merged["childtype"] == nil || merged["childtype"] == "" {
+								merged["childtype"] = poi2["childtype"]
+							}
+
+							// 添加合并日志
+							log.Printf("[合并算法] 合并医院: %s + %s -> %s (距离: %.1fm)", name1, name2, merged["name"], dist)
+
+							finalPois = append(finalPois, merged)
+							optOutIds[poi2["id"].(string)] = true
+							goto NextPoi
+						} else {
+							log.Printf("[合并算法] 距离过远，不合并: %s 和 %s (距离: %.1fm > %.1fm)", name1, name2, dist, duplicateDistanceThreshold)
+						}
+					} else {
+						log.Printf("[合并算法] 坐标无效，不合并: %s 和 %s", name1, name2)
+					}
+				} else {
+					log.Printf("[合并算法] 名称不匹配，不合并: %s 和 %s (核心重叠: %v, 字符重叠: %d)", name1, name2, hasCoreOverlap, charOverlapCount)
 				}
 			}
 		}
@@ -1146,8 +1268,18 @@ func getMergedPois(c *gin.Context) {
 		}
 		tc1, _ := poi1["typecode"].(string)
 		childtype1, _ := poi1["childtype"]
+		// 改进：更准确的childtype空值判断
+		isChildtype1Empty := false
+		if childtype1 == nil || childtype1 == "" {
+			isChildtype1Empty = true
+		} else if arr, ok := childtype1.([]interface{}); ok && len(arr) == 0 {
+			isChildtype1Empty = true
+		} else if arr, ok := childtype1.([]string); ok && len(arr) == 0 {
+			isChildtype1Empty = true
+		}
+
 		// 只对满足如下条件的POI参与合并
-		if (tc1 == "090101" && (childtype1 == nil || childtype1 == "")) ||
+		if (tc1 == "090101" && isChildtype1Empty) ||
 			strings.HasPrefix(tc1, "0901") ||
 			strings.HasPrefix(tc1, "0902") ||
 			strings.HasPrefix(tc1, "0903") ||
@@ -1164,19 +1296,27 @@ func getMergedPois(c *gin.Context) {
 			}
 			tc2, _ := poi2["typecode"].(string)
 			childtype2, _ := poi2["childtype"]
-			if tc2 == "090101" && !(childtype2 == nil || childtype2 == "") {
+
+			// 改进：更准确的childtype空值判断
+			isChildtype2Empty := false
+			if childtype2 == nil || childtype2 == "" {
+				isChildtype2Empty = true
+			} else if arr, ok := childtype2.([]interface{}); ok && len(arr) == 0 {
+				isChildtype2Empty = true
+			} else if arr, ok := childtype2.([]string); ok && len(arr) == 0 {
+				isChildtype2Empty = true
+			}
+
+			if tc2 == "090101" && !isChildtype2Empty {
 				continue // 090101且childtype不为空的，不参与合并
 			}
-			// 名称重叠判定
-			n1 := []rune(poi1["name"].(string))
-			n2 := []rune(poi2["name"].(string))
-			overlap := ""
-			for _, c := range n1 {
-				if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
-					overlap += string(c)
-				}
-			}
-			if len([]rune(overlap)) >= 4 {
+
+			// 改进名称重叠判定：优先检查完全相同的名称
+			name1, _ := poi1["name"].(string)
+			name2, _ := poi2["name"].(string)
+
+			// 如果名称完全相同，直接合并
+			if name1 == name2 {
 				// 距离判定
 				lat1, _ := parseFloatFromAny(poi1["location_lat"])
 				lng1, _ := parseFloatFromAny(poi1["location_lng"])
@@ -1185,12 +1325,11 @@ func getMergedPois(c *gin.Context) {
 				if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
 					dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
 					if dist < duplicateDistanceThreshold {
-						// 合并为一个新POI，名称为重叠部分
+						// 合并为一个新POI，名称为原名称
 						merged := make(map[string]interface{})
 						for k, v := range poi1 {
 							merged[k] = v
 						}
-						merged["name"] = overlap
 						// 修正：typecode/childtype优先保留主POI的值，如无则补全
 						if merged["typecode"] == nil || merged["typecode"] == "" {
 							merged["typecode"] = poi2["typecode"]
@@ -1202,6 +1341,111 @@ func getMergedPois(c *gin.Context) {
 						optOutIds[poi2["id"].(string)] = true
 						goto NextPoi
 					}
+				}
+			} else {
+				// 改进的字符重叠判定逻辑：更智能的医院名称匹配
+				name1, _ := poi1["name"].(string)
+				name2, _ := poi2["name"].(string)
+
+				// 方法1：检查是否包含相同的医院核心名称（如"东直门医院"）
+				coreNames := []string{"医院", "门诊", "诊所", "中心", "院区", "分院"}
+				hasCoreOverlap := false
+				for _, core := range coreNames {
+					if strings.Contains(name1, core) && strings.Contains(name2, core) {
+						// 提取核心名称前的部分进行比较
+						idx1 := strings.Index(name1, core)
+						idx2 := strings.Index(name2, core)
+						if idx1 > 0 && idx2 > 0 {
+							prefix1 := name1[:idx1]
+							prefix2 := name2[:idx2]
+							// 检查前缀是否有重叠
+							if len(prefix1) >= 2 && len(prefix2) >= 2 {
+								// 计算前缀的重叠字符数
+								overlapCount := 0
+								for _, c := range prefix1 {
+									if strings.ContainsRune(prefix2, c) {
+										overlapCount++
+									}
+								}
+								if overlapCount >= 2 { // 至少2个字符重叠
+									hasCoreOverlap = true
+									log.Printf("[合并算法] 核心名称匹配: %s 和 %s 通过 %s 匹配 (重叠字符数: %d)", name1, name2, core, overlapCount)
+									break
+								}
+							}
+						}
+					}
+				}
+
+				// 方法2：检查是否包含相同的医院名称片段（如"东直门"）
+				if !hasCoreOverlap {
+					hospitalNameFragments := []string{"东直门", "协和", "同仁", "天坛", "安贞", "积水潭", "友谊", "宣武", "朝阳", "海淀", "丰台", "石景山", "门头沟", "房山", "通州", "顺义", "昌平", "大兴", "怀柔", "平谷", "密云", "延庆"}
+					for _, fragment := range hospitalNameFragments {
+						if strings.Contains(name1, fragment) && strings.Contains(name2, fragment) {
+							hasCoreOverlap = true
+							log.Printf("[合并算法] 医院名称片段匹配: %s 和 %s 通过 %s 匹配", name1, name2, fragment)
+							break
+						}
+					}
+				}
+
+				// 方法3：原有的字符重叠判定逻辑（作为兜底）
+				n1 := []rune(name1)
+				n2 := []rune(name2)
+				overlap := ""
+				for _, c := range n1 {
+					if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
+						overlap += string(c)
+					}
+				}
+				charOverlapCount := len([]rune(overlap))
+
+				// 合并条件：核心名称重叠 或 字符重叠>=4
+				if hasCoreOverlap || charOverlapCount >= 4 {
+					log.Printf("[合并算法] 尝试合并: %s 和 %s (核心重叠: %v, 字符重叠: %d)", name1, name2, hasCoreOverlap, charOverlapCount)
+					// 距离判定
+					lat1, _ := parseFloatFromAny(poi1["location_lat"])
+					lng1, _ := parseFloatFromAny(poi1["location_lng"])
+					lat2, _ := parseFloatFromAny(poi2["location_lat"])
+					lng2, _ := parseFloatFromAny(poi2["location_lng"])
+					if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+						dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
+						if dist < duplicateDistanceThreshold {
+							// 合并为一个新POI，选择更简洁的名称
+							merged := make(map[string]interface{})
+							for k, v := range poi1 {
+								merged[k] = v
+							}
+
+							// 选择更简洁的名称作为合并后的名称
+							if len(name1) <= len(name2) {
+								merged["name"] = name1
+							} else {
+								merged["name"] = name2
+							}
+
+							// 修正：typecode/childtype优先保留主POI的值，如无则补全
+							if merged["typecode"] == nil || merged["typecode"] == "" {
+								merged["typecode"] = poi2["typecode"]
+							}
+							if merged["childtype"] == nil || merged["childtype"] == "" {
+								merged["childtype"] = poi2["childtype"]
+							}
+
+							// 添加合并日志
+							log.Printf("[合并算法] 合并医院: %s + %s -> %s (距离: %.1fm)", name1, name2, merged["name"], dist)
+
+							finalPois = append(finalPois, merged)
+							optOutIds[poi2["id"].(string)] = true
+							goto NextPoi
+						} else {
+							log.Printf("[合并算法] 距离过远，不合并: %s 和 %s (距离: %.1fm > %.1fm)", name1, name2, dist, duplicateDistanceThreshold)
+						}
+					} else {
+						log.Printf("[合并算法] 坐标无效，不合并: %s 和 %s", name1, name2)
+					}
+				} else {
+					log.Printf("[合并算法] 名称不匹配，不合并: %s 和 %s (核心重叠: %v, 字符重叠: %d)", name1, name2, hasCoreOverlap, charOverlapCount)
 				}
 			}
 		}
@@ -1261,111 +1505,121 @@ func classifyHospital(poi map[string]interface{}) (string, string, int) {
 		}
 	}
 
+	// 处理多个typecode的情况（如：090202|090300），只取前6位作为主要typecode
+	primaryTypecode := typecode
+	if strings.Contains(typecode, "|") {
+		parts := strings.Split(typecode, "|")
+		if len(parts) > 0 && len(parts[0]) >= 6 {
+			primaryTypecode = parts[0][:6]
+			log.Printf("[分类算法] 多typecode处理: %s -> 取前6位: %s", typecode, primaryTypecode)
+		}
+	}
+
 	// 添加调试日志
 	name, _ := poi["name"].(string)
-	log.Printf("[分类算法] 医院: %s, typecode: %s, childtype: %s", name, typecode, childtypeStr)
+	log.Printf("[分类算法] 医院: %s, 原始typecode: %s, 主要typecode: %s, childtype: %s", name, typecode, primaryTypecode, childtypeStr)
 
 	// 判断childtype是否为空（包括空字符串、null、[]等）
 	isChildtypeEmpty := childtypeStr == "" || childtypeStr == "[]" || childtypeStr == "null" || childtypeStr == "0"
 	isChildtypeNotEmpty := childtypeStr != "" && childtypeStr != "[]" && childtypeStr != "null" && childtypeStr != "0"
 
-	// 严格按照规则表进行精细化判断
+	// 严格按照规则表进行精细化判断，使用主要typecode
 	// 1. (POI=090101) and (childtype=[]) → 三甲，大红十字BOLD，排序1
-	if typecode == "090101" && isChildtypeEmpty {
+	if primaryTypecode == "090101" && isChildtypeEmpty {
 		log.Printf("[分类算法] %s → 三甲 (090101且childtype为空)", name)
 		return "三甲", "icon_tier3_hospital_bold", 1
 	}
 	// 2. (POI=090101) and (childtype<>[]) → null，不显示
-	if typecode == "090101" && isChildtypeNotEmpty {
+	if primaryTypecode == "090101" && isChildtypeNotEmpty {
 		log.Printf("[分类算法] %s → null (090101且childtype非空: %s)", name, childtypeStr)
 		return "null", "null", 0
 	}
 	// 3. (POI=090100) and (childtype=[]) → 综合医院，中红十字BOLD，排序2
-	if typecode == "090100" && isChildtypeEmpty {
+	if primaryTypecode == "090100" && isChildtypeEmpty {
 		log.Printf("[分类算法] %s → 综合医院 (090100且childtype为空)", name)
 		return "综合医院", "icon_general_hospital_bold", 2
 	}
 	// 4. (POI=090100) and (childtype<>[]) → null，不显示
-	if typecode == "090100" && isChildtypeNotEmpty {
+	if primaryTypecode == "090100" && isChildtypeNotEmpty {
 		log.Printf("[分类算法] %s → null (090100且childtype非空: %s)", name, childtypeStr)
 		return "null", "null", 0
 	}
 	// 5. POI=090201 → null，不显示
-	if typecode == "090201" {
+	if primaryTypecode == "090201" {
 		log.Printf("[分类算法] %s → null (090201)", name)
 		return "null", "null", 0
 	}
 	// 6. POI=090102 → 社区医院，小红十字BOLD，排序3
-	if typecode == "090102" {
+	if primaryTypecode == "090102" {
 		log.Printf("[分类算法] %s → 社区医院", name)
 		return "社区医院", "icon_small_red_cross_bold", 3
 	}
 	// 7. POI=090200 → 专科，小红十字BOLD，排序4
-	if typecode == "090200" {
+	if primaryTypecode == "090200" {
 		log.Printf("[分类算法] %s → 专科", name)
 		return "专科", "icon_small_red_cross_bold", 4
 	}
 	// 8. POI=090202 → 牙科，Tooth，排序5
-	if typecode == "090202" {
+	if primaryTypecode == "090202" {
 		log.Printf("[分类算法] %s → 牙科", name)
 		return "牙科", "icon_tooth", 5
 	}
 	// 9. POI=090203 → 眼科，小红十字Normal，排序6
-	if typecode == "090203" {
+	if primaryTypecode == "090203" {
 		log.Printf("[分类算法] %s → 眼科", name)
 		return "眼科", "icon_small_red_cross_normal", 6
 	}
 	// 10. POI=090204 → 耳鼻喉，小红十字Normal，排序7
-	if typecode == "090204" {
+	if primaryTypecode == "090204" {
 		log.Printf("[分类算法] %s → 耳鼻喉", name)
 		return "耳鼻喉", "icon_small_red_cross_normal", 7
 	}
 	// 11. POI=090205 → 胸科，小红十字Normal，排序8
-	if typecode == "090205" {
+	if primaryTypecode == "090205" {
 		log.Printf("[分类算法] %s → 胸科", name)
 		return "胸科", "icon_small_red_cross_normal", 8
 	}
 	// 12. POI=090206 → 骨科，小红十字Normal，排序9
-	if typecode == "090206" {
+	if primaryTypecode == "090206" {
 		log.Printf("[分类算法] %s → 骨科", name)
 		return "骨科", "icon_small_red_cross_normal", 9
 	}
 	// 13. POI=090207 → 肿瘤，小红十字Normal，排序10
-	if typecode == "090207" {
+	if primaryTypecode == "090207" {
 		log.Printf("[分类算法] %s → 肿瘤", name)
 		return "肿瘤", "icon_small_red_cross_normal", 10
 	}
 	// 14. POI=090208 → 脑科，小红十字Normal，排序11
-	if typecode == "090208" {
+	if primaryTypecode == "090208" {
 		log.Printf("[分类算法] %s → 脑科", name)
 		return "脑科", "icon_small_red_cross_normal", 11
 	}
 	// 15. POI=090209 → 妇科，小红十字Normal，排序12
-	if typecode == "090209" {
+	if primaryTypecode == "090209" {
 		log.Printf("[分类算法] %s → 妇科", name)
 		return "妇科", "icon_small_red_cross_normal", 12
 	}
 	// 16. POI=090210 → 精神，小红十字Normal，排序13
-	if typecode == "090210" {
+	if primaryTypecode == "090210" {
 		log.Printf("[分类算法] %s → 精神", name)
 		return "精神", "icon_small_red_cross_normal", 13
 	}
 	// 17. POI=090211 → 传染病，小红十字Normal，排序14
-	if typecode == "090211" {
+	if primaryTypecode == "090211" {
 		log.Printf("[分类算法] %s → 传染病", name)
 		return "传染病", "icon_small_red_cross_normal", 14
 	}
 	// 18. POI=090300 → 诊所，小红十字Normal，排序15
-	if typecode == "090300" {
+	if primaryTypecode == "090300" {
 		log.Printf("[分类算法] %s → 诊所", name)
 		return "诊所", "icon_small_red_cross_normal", 15
 	}
 	// 19. POI=090400 → 急救中心，ER.png，排序16
-	if typecode == "090400" {
+	if primaryTypecode == "090400" {
 		log.Printf("[分类算法] %s → 急救中心", name)
 		return "急救中心", "icon_er", 16
 	}
 	// 其它默认
-	log.Printf("[分类算法] %s → 其他", name)
+	log.Printf("[分类算法] %s → 其他 (主要typecode: %s)", name, primaryTypecode)
 	return "其他", "icon_default", 99
 }
