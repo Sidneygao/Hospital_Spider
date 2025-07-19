@@ -18,6 +18,12 @@ export default function HospitalCard({ hospital, onClick }) {
         <span className="hospital-card-title">{hospital.name}</span>
         {level && <span className="hospital-card-level" style={{ color: '#1976d2', marginLeft: 8, fontWeight: 500, fontSize: 16 }}>{level}</span>}
       </div>
+      {/* 新增：显示计算出的医院类别和排序 */}
+      <div style={{ color: '#888', fontSize: 13, marginBottom: 2 }}>
+        类别：{hospital.algo_hospital_category || '无'}（排序：{hospital.algo_display_order ?? '无'}）
+      </div>
+      {/* 如需渲染ICON，可用algo_icon_type字段 */}
+      {/* <img src={getIconUrl(hospital.algo_icon_type)} alt="icon" /> */}
       <div className="card-info">{hospital.address}</div>
       <div className="card-meta">
         <span>评分：{hospital.rating}</span>

@@ -150,6 +150,10 @@ func main() {
 	fmt.Println("Press Ctrl+C to stop the server")
 	r.GET("/api/amap/geo", AmapGeoProxy)
 	r.GET("/api/amap/around", AmapAroundProxy)
+
+	// 新增：合并POI结果API
+	r.GET("/api/merged-pois", getMergedPois)
+
 	r.Run(":8080")
 }
 
@@ -459,7 +463,6 @@ func submitFeedback(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
 	feedbackID, _ := result.LastInsertId()
 
 	feedback := UserFeedback{
@@ -716,38 +719,244 @@ func AmapAroundProxy(c *gin.Context) {
 		return
 	}
 
-	// 只用types=090000单一请求，彻底回退
-	amapUrl := fmt.Sprintf("https://restapi.amap.com/v3/place/around?key=%s&location=%s&radius=%s&types=090000", key, location, radius)
-	resp, err := http.Get(amapUrl)
-	if err != nil {
-		log.Printf("[AmapAroundProxy][主请求失败] err=%v", err)
-		c.JSON(500, gin.H{"error": "高德主请求失败"})
-		return
+	typecodes := []string{"090100", "090101", "090102", "090200", "090300", "090400", "090202"}
+	typecodeCategory := map[string]string{
+		"090100": "综合医院",
+		"090101": "三级甲等医院",
+		"090102": "社区医院",
+		"090200": "专科医院",
+		"090202": "牙科医院",
+		"090203": "眼科医院",
+		"090204": "耳鼻喉医院",
+		"090205": "胸科医院",
+		"090206": "骨科医院",
+		"090207": "肿瘤医院",
+		"090208": "脑科医院",
+		"090209": "妇科医院",
+		"090210": "精神医院",
+		"090211": "传染病医院",
+		"090300": "诊所",
+		"090400": "急救中心",
 	}
-	body, _ := ioutil.ReadAll(resp.Body)
-	resp.Body.Close()
-	var amapResp map[string]interface{}
-	json.Unmarshal(body, &amapResp)
-	pois, _ := amapResp["pois"].([]interface{})
-
-	// 自动过滤typecode不是0901/0902/0903/0904开头的POI
-	var filteredPois []interface{}
-	for _, poi := range pois {
-		m, ok := poi.(map[string]interface{})
-		if !ok {
+	poiMap := make(map[string]map[string]interface{})
+	var ledger []RawPOIRecord
+	for _, tc := range typecodes {
+		url := fmt.Sprintf("https://restapi.amap.com/v3/place/around?key=%s&location=%s&radius=%s&types=%s", key, location, radius, tc)
+		resp, err := http.Get(url)
+		if err != nil {
 			continue
 		}
-		typecode, _ := m["typecode"].(string)
-		if strings.HasPrefix(typecode, "0901") || strings.HasPrefix(typecode, "0902") || strings.HasPrefix(typecode, "0903") || strings.HasPrefix(typecode, "0904") {
-			filteredPois = append(filteredPois, poi)
+		body, _ := ioutil.ReadAll(resp.Body)
+		resp.Body.Close()
+		var amapResp map[string]interface{}
+		json.Unmarshal(body, &amapResp)
+		pois, _ := amapResp["pois"].([]interface{})
+		// 追加到台账
+		ledger = append(ledger, RawPOIRecord{Typecode: tc, POIs: pois})
+		for _, poi := range pois {
+			m, ok := poi.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			id, _ := m["id"].(string)
+			if cat, ok := typecodeCategory[tc]; ok {
+				m["hospital_category"] = cat
+			}
+			poiMap[id] = m
+		}
+	}
+	// 写入amap_query_ledger.json到backend目录，增强健壮性
+	log.Println("[台账] 准备写入台账文件 backend/amap_query_ledger.json ...")
+	if _, err := os.Stat("backend"); os.IsNotExist(err) {
+		errMk := os.Mkdir("backend", 0755)
+		if errMk != nil {
+			log.Println("[台账] 创建backend目录失败:", errMk)
+		}
+	}
+	ledgerBytes, _ := json.MarshalIndent(ledger, "", "  ")
+	errWrite := ioutil.WriteFile("backend/amap_query_ledger.json", ledgerBytes, 0644)
+	if errWrite != nil {
+		log.Println("[台账] 写台账失败:", errWrite)
+	} else {
+		log.Println("[台账] 台账写入成功，记录数：", len(ledger))
+	}
+	// 构建标准化POI缓冲JSON，增加icon_type字段
+	var mergedPois []map[string]interface{}
+	iconTypeMap := map[string]string{
+		"090100": "icon_general_hospital",
+		"090101": "icon_tier3_hospital",
+		"090102": "icon_health_center",
+		"090200": "icon_special_hospital",
+		"090202": "icon_tooth",
+		"090203": "icon_small_red_cross_normal",
+		"090204": "icon_small_red_cross_normal",
+		"090205": "icon_small_red_cross_normal",
+		"090206": "icon_small_red_cross_normal",
+		"090207": "icon_small_red_cross_normal",
+		"090208": "icon_small_red_cross_normal",
+		"090209": "icon_small_red_cross_normal",
+		"090210": "icon_small_red_cross_normal",
+		"090211": "icon_small_red_cross_normal",
+		"090300": "icon_clinic",
+		"090400": "icon_emergency",
+	}
+	// POI去重合并逻辑
+	for _, v := range poiMap {
+		m := v
+		tc, _ := m["typecode"].(string)
+		if icon, ok := iconTypeMap[tc]; ok {
+			m["icon_type"] = icon
+		} else {
+			m["icon_type"] = "icon_default"
+		}
+		// 牙科医院不去重，直接加入
+		if tc == "090202" {
+			mergedPois = append(mergedPois, m)
+			continue
+		}
+		// 其余POI去重
+		lat1, _ := parseFloatFromAny(m["location_lat"])
+		lng1, _ := parseFloatFromAny(m["location_lng"])
+		isDuplicate := false
+		for _, exist := range mergedPois {
+			tcExist, _ := exist["typecode"].(string)
+			if tcExist == "090202" {
+				continue // 不与牙科比对
+			}
+			lat2, _ := parseFloatFromAny(exist["location_lat"])
+			lng2, _ := parseFloatFromAny(exist["location_lng"])
+			if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+				dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000 // km->m
+				if dist < duplicateDistanceThreshold {
+					isDuplicate = true
+					break
+				}
+			}
+		}
+		if !isDuplicate {
+			mergedPois = append(mergedPois, m)
+		}
+	}
+	// POI合并优化：名称重叠>=4字且距离<350米的合并为一个
+	var finalPois []map[string]interface{}
+	optOutIds := make(map[string]bool)
+	for i, poi1 := range mergedPois {
+		if optOutIds[poi1["id"].(string)] {
+			continue
+		}
+		tc1, _ := poi1["typecode"].(string)
+		childtype1, _ := poi1["childtype"]
+		// 只对满足如下条件的POI参与合并
+		if (tc1 == "090101" && (childtype1 == nil || childtype1 == "")) ||
+			strings.HasPrefix(tc1, "0901") ||
+			strings.HasPrefix(tc1, "0902") ||
+			strings.HasPrefix(tc1, "0903") ||
+			strings.HasPrefix(tc1, "0904") {
+			// 参与合并
+		} else {
+			finalPois = append(finalPois, poi1)
+			continue
+		}
+		for j := i + 1; j < len(mergedPois); j++ {
+			poi2 := mergedPois[j]
+			if optOutIds[poi2["id"].(string)] {
+				continue
+			}
+			tc2, _ := poi2["typecode"].(string)
+			childtype2, _ := poi2["childtype"]
+			if tc2 == "090101" && !(childtype2 == nil || childtype2 == "") {
+				continue // 090101且childtype不为空的，不参与合并
+			}
+			// 名称重叠判定
+			n1 := []rune(poi1["name"].(string))
+			n2 := []rune(poi2["name"].(string))
+			overlap := ""
+			for _, c := range n1 {
+				if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
+					overlap += string(c)
+				}
+			}
+			if len([]rune(overlap)) >= 4 {
+				// 距离判定
+				lat1, _ := parseFloatFromAny(poi1["location_lat"])
+				lng1, _ := parseFloatFromAny(poi1["location_lng"])
+				lat2, _ := parseFloatFromAny(poi2["location_lat"])
+				lng2, _ := parseFloatFromAny(poi2["location_lng"])
+				if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+					dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
+					if dist < duplicateDistanceThreshold {
+						// 合并为一个新POI，名称为重叠部分
+						merged := make(map[string]interface{})
+						for k, v := range poi1 {
+							merged[k] = v
+						}
+						merged["name"] = overlap
+						// 修正：typecode/childtype优先保留主POI的值，如无则补全
+						if merged["typecode"] == nil || merged["typecode"] == "" {
+							merged["typecode"] = poi2["typecode"]
+						}
+						if merged["childtype"] == nil || merged["childtype"] == "" {
+							merged["childtype"] = poi2["childtype"]
+						}
+						finalPois = append(finalPois, merged)
+						optOutIds[poi2["id"].(string)] = true
+						goto NextPoi
+					}
+				}
+			}
+		}
+		finalPois = append(finalPois, poi1)
+	NextPoi:
+	}
+	// 其它被合并的POI标记OptOut
+	for _, poi := range mergedPois {
+		if optOutIds[poi["id"].(string)] {
+			if poi["tags"] == nil {
+				poi["tags"] = []string{"OptOut"}
+			} else {
+				poi["tags"] = append(poi["tags"].([]string), "OptOut")
+			}
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{
+	// 新增：将合并后POI及TAG写入JSON文件，便于前端查看
+	mergedResult := map[string]interface{}{
 		"status": "1",
-		"count":  len(filteredPois),
-		"pois":   filteredPois,
-	})
+		"count":  len(finalPois),
+		"pois":   finalPois,
+	}
+	mergedBytes, _ := json.MarshalIndent(mergedResult, "", "  ")
+	errMerged := ioutil.WriteFile("backend/merged_poi_result.json", mergedBytes, 0644)
+	if errMerged != nil {
+		log.Println("[合并结果] 写入合并POI结果JSON失败:", errMerged)
+	} else {
+		log.Println("[合并结果] 合并POI结果写入backend/merged_poi_result.json成功")
+	}
+
+	// 修正医院类别、ICON、排序判定逻辑
+	for _, poi := range finalPois {
+		cat, icon, order := classifyHospital(poi)
+		poi["algo_hospital_category"] = cat
+		poi["algo_icon_type"] = icon
+		poi["algo_display_order"] = order
+	}
+
+	c.JSON(http.StatusOK, mergedResult)
+	return
+}
+
+// 辅助函数：从interface{}安全解析float64
+func parseFloatFromAny(val interface{}) (float64, bool) {
+	switch v := val.(type) {
+	case float64:
+		return v, true
+	case string:
+		f, err := strconv.ParseFloat(v, 64)
+		if err == nil {
+			return f, true
+		}
+	}
+	return 0, false
 }
 
 func checkAmapKeyHealth() {
@@ -765,4 +974,398 @@ func checkAmapKeyHealth() {
 	defer resp.Body.Close()
 	body, _ := io.ReadAll(resp.Body)
 	log.Printf("[健康检查] 高德API响应: %s", string(body))
+}
+
+// 台账结构体和全局变量
+
+type RawPOIRecord struct {
+	Typecode string        `json:"typecode"`
+	POIs     []interface{} `json:"pois"`
+}
+
+var allRawPois []RawPOIRecord
+
+// 相似医院去重距离阈值由350米
+const duplicateDistanceThreshold = 350.0 // 单位：米
+
+// 新增：合并POI结果JSON文件的API接口
+func getMergedPois(c *gin.Context) {
+	// 1. 直接复用AmapAroundProxy的实时抓取与合并逻辑
+	// 默认北京中心点与半径（可根据前端传参扩展）
+	location := c.DefaultQuery("location", "116.407387,39.904179")
+	radius := c.DefaultQuery("radius", "5000")
+	key := os.Getenv("AMAP_KEY")
+	if key == "" {
+		c.JSON(500, gin.H{"error": "AMAP_KEY not set in backend env"})
+		return
+	}
+	typecodes := []string{
+		"090100", // 综合医院
+		"090101", // 三级甲等医院
+		"090102", // 社区医院
+		"090200", // 专科医院
+		"090202", // 牙科
+		"090203", // 眼科
+		"090204", // 耳鼻喉
+		"090205", // 胸科
+		"090206", // 骨科
+		"090207", // 肿瘤
+		"090208", // 脑科
+		"090209", // 妇科
+		"090210", // 精神
+		"090211", // 传染病
+		"090300", // 诊所
+		"090400", // 急救中心
+	}
+	typecodeCategory := map[string]string{
+		"090100": "综合医院",
+		"090101": "三级甲等医院",
+		"090102": "社区医院",
+		"090200": "专科医院",
+		"090202": "牙科医院",
+		"090203": "眼科医院",
+		"090204": "耳鼻喉医院",
+		"090205": "胸科医院",
+		"090206": "骨科医院",
+		"090207": "肿瘤医院",
+		"090208": "脑科医院",
+		"090209": "妇科医院",
+		"090210": "精神医院",
+		"090211": "传染病医院",
+		"090300": "诊所",
+		"090400": "急救中心",
+	}
+	poiMap := make(map[string]map[string]interface{})
+	var ledger []RawPOIRecord
+	for _, tc := range typecodes {
+		url := fmt.Sprintf("https://restapi.amap.com/v3/place/around?key=%s&location=%s&radius=%s&types=%s", key, location, radius, tc)
+		resp, err := http.Get(url)
+		if err != nil {
+			continue
+		}
+		body, _ := ioutil.ReadAll(resp.Body)
+		resp.Body.Close()
+		var amapResp map[string]interface{}
+		json.Unmarshal(body, &amapResp)
+		pois, _ := amapResp["pois"].([]interface{})
+		// 追加到台账
+		ledger = append(ledger, RawPOIRecord{Typecode: tc, POIs: pois})
+		for _, poi := range pois {
+			m, ok := poi.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			id, _ := m["id"].(string)
+			if cat, ok := typecodeCategory[tc]; ok {
+				m["hospital_category"] = cat
+			}
+			poiMap[id] = m
+		}
+	}
+
+	// 写入amap_query_ledger.json到backend目录，增强健壮性
+	log.Println("[台账] 准备写入台账文件 backend/amap_query_ledger.json ...")
+	if _, err := os.Stat("backend"); os.IsNotExist(err) {
+		errMk := os.Mkdir("backend", 0755)
+		if errMk != nil {
+			log.Println("[台账] 创建backend目录失败:", errMk)
+		}
+	}
+	ledgerBytes, _ := json.MarshalIndent(ledger, "", "  ")
+	errWrite := ioutil.WriteFile("backend/amap_query_ledger.json", ledgerBytes, 0644)
+	if errWrite != nil {
+		log.Println("[台账] 写台账失败:", errWrite)
+	} else {
+		log.Println("[台账] 台账写入成功，记录数：", len(ledger))
+	}
+
+	// 构建标准化POI缓冲JSON，增加icon_type字段
+	var mergedPois []map[string]interface{}
+	iconTypeMap := map[string]string{
+		"090100": "icon_general_hospital",
+		"090101": "icon_tier3_hospital",
+		"090102": "icon_health_center",
+		"090200": "icon_special_hospital",
+		"090202": "icon_tooth",
+		"090203": "icon_small_red_cross_normal",
+		"090204": "icon_small_red_cross_normal",
+		"090205": "icon_small_red_cross_normal",
+		"090206": "icon_small_red_cross_normal",
+		"090207": "icon_small_red_cross_normal",
+		"090208": "icon_small_red_cross_normal",
+		"090209": "icon_small_red_cross_normal",
+		"090210": "icon_small_red_cross_normal",
+		"090211": "icon_small_red_cross_normal",
+		"090300": "icon_clinic",
+		"090400": "icon_emergency",
+	}
+	// POI去重合并逻辑
+	for _, v := range poiMap {
+		m := v
+		tc, _ := m["typecode"].(string)
+		if icon, ok := iconTypeMap[tc]; ok {
+			m["icon_type"] = icon
+		} else {
+			m["icon_type"] = "icon_default"
+		}
+		// 牙科医院不去重，直接加入
+		if tc == "090202" {
+			mergedPois = append(mergedPois, m)
+			continue
+		}
+		// 其余POI去重
+		lat1, _ := parseFloatFromAny(m["location_lat"])
+		lng1, _ := parseFloatFromAny(m["location_lng"])
+		isDuplicate := false
+		for _, exist := range mergedPois {
+			tcExist, _ := exist["typecode"].(string)
+			if tcExist == "090202" {
+				continue // 不与牙科比对
+			}
+			lat2, _ := parseFloatFromAny(exist["location_lat"])
+			lng2, _ := parseFloatFromAny(exist["location_lng"])
+			if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+				dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000 // km->m
+				if dist < duplicateDistanceThreshold {
+					isDuplicate = true
+					break
+				}
+			}
+		}
+		if !isDuplicate {
+			mergedPois = append(mergedPois, m)
+		}
+	}
+
+	// POI合并优化：名称重叠>=4字且距离<350米的合并为一个
+	var finalPois []map[string]interface{}
+	optOutIds := make(map[string]bool)
+	for i, poi1 := range mergedPois {
+		if optOutIds[poi1["id"].(string)] {
+			continue
+		}
+		tc1, _ := poi1["typecode"].(string)
+		childtype1, _ := poi1["childtype"]
+		// 只对满足如下条件的POI参与合并
+		if (tc1 == "090101" && (childtype1 == nil || childtype1 == "")) ||
+			strings.HasPrefix(tc1, "0901") ||
+			strings.HasPrefix(tc1, "0902") ||
+			strings.HasPrefix(tc1, "0903") ||
+			strings.HasPrefix(tc1, "0904") {
+			// 参与合并
+		} else {
+			finalPois = append(finalPois, poi1)
+			continue
+		}
+		for j := i + 1; j < len(mergedPois); j++ {
+			poi2 := mergedPois[j]
+			if optOutIds[poi2["id"].(string)] {
+				continue
+			}
+			tc2, _ := poi2["typecode"].(string)
+			childtype2, _ := poi2["childtype"]
+			if tc2 == "090101" && !(childtype2 == nil || childtype2 == "") {
+				continue // 090101且childtype不为空的，不参与合并
+			}
+			// 名称重叠判定
+			n1 := []rune(poi1["name"].(string))
+			n2 := []rune(poi2["name"].(string))
+			overlap := ""
+			for _, c := range n1 {
+				if strings.ContainsRune(string(n2), c) && !strings.ContainsRune(overlap, c) {
+					overlap += string(c)
+				}
+			}
+			if len([]rune(overlap)) >= 4 {
+				// 距离判定
+				lat1, _ := parseFloatFromAny(poi1["location_lat"])
+				lng1, _ := parseFloatFromAny(poi1["location_lng"])
+				lat2, _ := parseFloatFromAny(poi2["location_lat"])
+				lng2, _ := parseFloatFromAny(poi2["location_lng"])
+				if lat1 != 0 && lng1 != 0 && lat2 != 0 && lng2 != 0 {
+					dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
+					if dist < duplicateDistanceThreshold {
+						// 合并为一个新POI，名称为重叠部分
+						merged := make(map[string]interface{})
+						for k, v := range poi1 {
+							merged[k] = v
+						}
+						merged["name"] = overlap
+						// 修正：typecode/childtype优先保留主POI的值，如无则补全
+						if merged["typecode"] == nil || merged["typecode"] == "" {
+							merged["typecode"] = poi2["typecode"]
+						}
+						if merged["childtype"] == nil || merged["childtype"] == "" {
+							merged["childtype"] = poi2["childtype"]
+						}
+						finalPois = append(finalPois, merged)
+						optOutIds[poi2["id"].(string)] = true
+						goto NextPoi
+					}
+				}
+			}
+		}
+		finalPois = append(finalPois, poi1)
+	NextPoi:
+	}
+	// 其它被合并的POI标记OptOut
+	for _, poi := range mergedPois {
+		if optOutIds[poi["id"].(string)] {
+			if poi["tags"] == nil {
+				poi["tags"] = []string{"OptOut"}
+			} else {
+				poi["tags"] = append(poi["tags"].([]string), "OptOut")
+			}
+		}
+	}
+
+	// 新增：将合并后POI及TAG写入JSON文件，便于前端查看
+	mergedResult := map[string]interface{}{
+		"status": "1",
+		"count":  len(finalPois),
+		"pois":   finalPois,
+	}
+	mergedBytes, _ := json.MarshalIndent(mergedResult, "", "  ")
+	errMerged := ioutil.WriteFile("backend/merged_poi_result.json", mergedBytes, 0644)
+	if errMerged != nil {
+		log.Println("[合并结果] 写入合并POI结果JSON失败:", errMerged)
+	} else {
+		log.Println("[合并结果] 合并POI结果写入backend/merged_poi_result.json成功")
+	}
+
+	// 修正医院类别、ICON、排序判定逻辑
+	for _, poi := range finalPois {
+		cat, icon, order := classifyHospital(poi)
+		poi["algo_hospital_category"] = cat
+		poi["algo_icon_type"] = icon
+		poi["algo_display_order"] = order
+	}
+
+	c.JSON(http.StatusOK, mergedResult)
+	return
+}
+
+// 修正医院类别、ICON、排序判定逻辑
+func classifyHospital(poi map[string]interface{}) (string, string, int) {
+	typecode, _ := poi["typecode"].(string)
+	childtype, childtypeExists := poi["childtype"]
+	childtypeStr := ""
+	if childtypeExists && childtype != nil {
+		switch t := childtype.(type) {
+		case string:
+			childtypeStr = t
+		case float64, int:
+			childtypeStr = fmt.Sprintf("%v", t)
+		default:
+			childtypeStr = fmt.Sprintf("%v", t)
+		}
+	}
+
+	// 添加调试日志
+	name, _ := poi["name"].(string)
+	log.Printf("[分类算法] 医院: %s, typecode: %s, childtype: %s", name, typecode, childtypeStr)
+
+	// 判断childtype是否为空（包括空字符串、null、[]等）
+	isChildtypeEmpty := childtypeStr == "" || childtypeStr == "[]" || childtypeStr == "null" || childtypeStr == "0"
+	isChildtypeNotEmpty := childtypeStr != "" && childtypeStr != "[]" && childtypeStr != "null" && childtypeStr != "0"
+
+	// 严格按照规则表进行精细化判断
+	// 1. (POI=090101) and (childtype=[]) → 三甲，大红十字BOLD，排序1
+	if typecode == "090101" && isChildtypeEmpty {
+		log.Printf("[分类算法] %s → 三甲 (090101且childtype为空)", name)
+		return "三甲", "icon_tier3_hospital_bold", 1
+	}
+	// 2. (POI=090101) and (childtype<>[]) → null，不显示
+	if typecode == "090101" && isChildtypeNotEmpty {
+		log.Printf("[分类算法] %s → null (090101且childtype非空: %s)", name, childtypeStr)
+		return "null", "null", 0
+	}
+	// 3. (POI=090100) and (childtype=[]) → 综合医院，中红十字BOLD，排序2
+	if typecode == "090100" && isChildtypeEmpty {
+		log.Printf("[分类算法] %s → 综合医院 (090100且childtype为空)", name)
+		return "综合医院", "icon_general_hospital_bold", 2
+	}
+	// 4. (POI=090100) and (childtype<>[]) → null，不显示
+	if typecode == "090100" && isChildtypeNotEmpty {
+		log.Printf("[分类算法] %s → null (090100且childtype非空: %s)", name, childtypeStr)
+		return "null", "null", 0
+	}
+	// 5. POI=090201 → null，不显示
+	if typecode == "090201" {
+		log.Printf("[分类算法] %s → null (090201)", name)
+		return "null", "null", 0
+	}
+	// 6. POI=090102 → 社区医院，小红十字BOLD，排序3
+	if typecode == "090102" {
+		log.Printf("[分类算法] %s → 社区医院", name)
+		return "社区医院", "icon_small_red_cross_bold", 3
+	}
+	// 7. POI=090200 → 专科，小红十字BOLD，排序4
+	if typecode == "090200" {
+		log.Printf("[分类算法] %s → 专科", name)
+		return "专科", "icon_small_red_cross_bold", 4
+	}
+	// 8. POI=090202 → 牙科，Tooth，排序5
+	if typecode == "090202" {
+		log.Printf("[分类算法] %s → 牙科", name)
+		return "牙科", "icon_tooth", 5
+	}
+	// 9. POI=090203 → 眼科，小红十字Normal，排序6
+	if typecode == "090203" {
+		log.Printf("[分类算法] %s → 眼科", name)
+		return "眼科", "icon_small_red_cross_normal", 6
+	}
+	// 10. POI=090204 → 耳鼻喉，小红十字Normal，排序7
+	if typecode == "090204" {
+		log.Printf("[分类算法] %s → 耳鼻喉", name)
+		return "耳鼻喉", "icon_small_red_cross_normal", 7
+	}
+	// 11. POI=090205 → 胸科，小红十字Normal，排序8
+	if typecode == "090205" {
+		log.Printf("[分类算法] %s → 胸科", name)
+		return "胸科", "icon_small_red_cross_normal", 8
+	}
+	// 12. POI=090206 → 骨科，小红十字Normal，排序9
+	if typecode == "090206" {
+		log.Printf("[分类算法] %s → 骨科", name)
+		return "骨科", "icon_small_red_cross_normal", 9
+	}
+	// 13. POI=090207 → 肿瘤，小红十字Normal，排序10
+	if typecode == "090207" {
+		log.Printf("[分类算法] %s → 肿瘤", name)
+		return "肿瘤", "icon_small_red_cross_normal", 10
+	}
+	// 14. POI=090208 → 脑科，小红十字Normal，排序11
+	if typecode == "090208" {
+		log.Printf("[分类算法] %s → 脑科", name)
+		return "脑科", "icon_small_red_cross_normal", 11
+	}
+	// 15. POI=090209 → 妇科，小红十字Normal，排序12
+	if typecode == "090209" {
+		log.Printf("[分类算法] %s → 妇科", name)
+		return "妇科", "icon_small_red_cross_normal", 12
+	}
+	// 16. POI=090210 → 精神，小红十字Normal，排序13
+	if typecode == "090210" {
+		log.Printf("[分类算法] %s → 精神", name)
+		return "精神", "icon_small_red_cross_normal", 13
+	}
+	// 17. POI=090211 → 传染病，小红十字Normal，排序14
+	if typecode == "090211" {
+		log.Printf("[分类算法] %s → 传染病", name)
+		return "传染病", "icon_small_red_cross_normal", 14
+	}
+	// 18. POI=090300 → 诊所，小红十字Normal，排序15
+	if typecode == "090300" {
+		log.Printf("[分类算法] %s → 诊所", name)
+		return "诊所", "icon_small_red_cross_normal", 15
+	}
+	// 19. POI=090400 → 急救中心，ER.png，排序16
+	if typecode == "090400" {
+		log.Printf("[分类算法] %s → 急救中心", name)
+		return "急救中心", "icon_er", 16
+	}
+	// 其它默认
+	log.Printf("[分类算法] %s → 其他", name)
+	return "其他", "icon_default", 99
 }
