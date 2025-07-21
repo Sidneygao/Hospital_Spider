@@ -1,41 +1,9 @@
 {
-  "count": 81,
+  "count": 47,
   "pois": [
     {
-      "address": "西坝河中里甲2-6号(西坝河地铁站F2口步行260米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "857",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFH86TW4",
-      "importance": [],
-      "location": "116.441898,39.965139",
-      "name": "西坝河中里社区卫生服务站",
-      "parent": "B000A9DPND",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/f04496a45b1de29a7ce44a87651e6301"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "柳芳北街与西坝河南路交叉口东北150米",
-      "adname": "朝阳区",
+      "address": "帅府园1号北京协和医院东单院区门诊楼F1层",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -43,82 +11,14 @@
       "biz_type": [],
       "childtype": "307",
       "cityname": "北京市",
-      "distance": "876",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK71AFI",
-      "importance": [],
-      "location": "116.436763,39.960225",
-      "name": "应急总医院本院区耳鼻咽喉科耳鸣耳聋眩晕诊疗中心",
-      "parent": "B0FFK6SVD1",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/b7a52a257de9226eaf6b849f07233eae"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "三元里南小街与三源里南小街交叉口东南100米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "934",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0H3TUMY07",
-      "importance": [],
-      "location": "116.448633,39.950120",
-      "name": "新源里西社区卫生服务站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e4a7a8b83461049b9de47301fc9738d7"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/84fdec964e7d54ca45dcf3f7a1e1b61b"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2458",
+      "distance": "749",
       "hospital_category": "三级甲等医院",
       "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG96QIM",
+      "id": "B0IADL1JLT",
       "importance": [],
-      "location": "116.426330,39.973977",
-      "name": "中日友好医院24小时自助挂号区",
-      "parent": "B000A8370S",
+      "location": "116.416846,39.913531",
+      "name": "北京协和医院东单院区门诊楼肝炎门诊",
+      "parent": "B000A82Z2N",
       "photos": [],
       "pname": "北京市",
       "poiweight": [],
@@ -129,597 +29,8 @@
       "typecode": "090101"
     },
     {
-      "address": "曙光西里甲6号时间国际A座606室",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "605",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0FFIN3URX",
-      "importance": [],
-      "location": "116.451446,39.962470",
-      "name": "赛德齿科",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/c4a22ed870007578004b8ab1a583dc9b"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-58677705",
-      "type": "医疗保健服务;专科医院;口腔医院|医疗保健服务;诊所;诊所",
-      "typecode": "090202|090300"
-    },
-    {
-      "address": "西坝河南里17号楼2层-5内2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "675",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0H2Z5ADN6",
-      "importance": [],
-      "location": "116.439406,39.960652",
-      "name": "德品口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/d80d7274516a95387a2a5617f4fed9ce"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/5c0d855fdcf64eae777188c10bdd9ab6"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/bc30ca156c87530b52ad2cbf4ef94a7e"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64606098;17600192765",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "顺源街1号楼",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1148",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B000A7H6V1",
-      "importance": [],
-      "location": "116.456672,39.951422",
-      "name": "左家庄社区卫生服务中心",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/23d65a08af7fbc3aefa33b8b1273eaff"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64672412",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2394",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFFAAYNZ",
-      "importance": [],
-      "location": "116.427263,39.973867",
-      "name": "中日友好医院本部A栋住院部",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/78697b710d595b64461fec17a4f3a1a8"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/c57a8b422ddb4629c29e55996357b2ed"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "东直门北大街4号",
+      "address": "帅府园1号北京协和医院东单院区门诊楼F8层H08012",
       "adname": "东城区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1522",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFH1YNIM",
-      "importance": [],
-      "location": "116.434583,39.948398",
-      "name": "东城区清水苑社区卫生服务站(东直门北大街)",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/b627ce237e52776a7b7877a460f4160d"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/88bd8116970ecc2ba9309985b07f4915"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64611494;010-65282009",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "承冀诚大厦西北门东90米(三元桥地铁站F口步行260米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1294",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0LGA4HDH5",
-      "importance": [],
-      "location": "116.461461,39.961240",
-      "name": "北京急救透析中心",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/957d67912d04906e1cf5ba584e476970"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "曙光西里4号楼与6号楼之间",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "466",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFF3NN78",
-      "importance": [],
-      "location": "116.449864,39.961842",
-      "name": "朝阳区左家庄街道曙光西里社区卫生服务站",
-      "parent": "B000A9NUCC",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2281",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0J3LA682H",
-      "importance": [],
-      "location": "116.428362,39.973264",
-      "name": "中日友好医院本部K2住院楼",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "13641367285",
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "东直门北大街乙4号",
-      "adname": "东城区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1588",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFG7HBA1",
-      "importance": [],
-      "location": "116.434612,39.947578",
-      "name": "东城社区卫生服务站(东直门北大街)",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/0d1eceb7fe6c3f5c66d87533f0dbed86"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/53bb600fa310502a4d11ff9a"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/53bb600fa310502a4d11ff9c"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64611494;010-65282009",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "和平里",
-      "adname": "东城区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1649",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B000A81K4Q",
-      "importance": [],
-      "location": "116.427425,39.958056",
-      "name": "东城区交通社区卫生服务站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/d32589ad1da2831a8f3c978705baf3a1"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/53b37442a310a21470adf07b"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/16591f334351d4ed0f0f7750b562b70b"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64213430;010-65282009",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "左家庄南斜街与左家庄北斜街交叉口东南40米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "420",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0KD7NVBAG",
-      "importance": [],
-      "location": "116.444529,39.955023",
-      "name": "左家庄口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/a13d8c3d36ac92f16584856bb9b3501a"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "北三环东路曙光西里甲1号东域大厦A座住宅楼307室",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": "3.8"
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "469",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0GR3CJV0O",
-      "importance": [],
-      "location": "116.451125,39.960951",
-      "name": "好年华医疗美容诊所",
-      "parent": "B000A9PRQ6",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/1e796293f6c8a51a160da24ec65e60fb"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/79e82be1cd64e51711413093fda046eb"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/111a00be474b0ac89af271a36a7b4282"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "13811284681",
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
-    },
-    {
-      "address": "太阳宫路6号楼",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "1692",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0GUKZDCBK",
-      "importance": [],
-      "location": "116.439773,39.972628",
-      "name": "北京市社区卫生服务",
-      "parent": "B0FFIY0UWY",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/a27f97b6e5ac447cc614470a89a2d5f0"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "北京城区西坝河东里79-9",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "710",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0FFF5GX3X",
-      "importance": [],
-      "location": "116.444933,39.964622",
-      "name": "维尔口腔医院(三元桥分院)",
-      "parent": "B000A9NUVD",
-      "photos": [
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0FFF5GX3X/comment/content_media_external_file_1000388352_ss__1750470883201_15377952.jpg"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0FFF5GX3X/comment/IMG_20250614_153258_tem_1749886386832_02284424.jpg"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0FFF5GX3X/comment/IMG_20250620_123817_tem_1750394311277_58699552.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-60905443",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "应急管理部应急总医院",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "846",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0IA5ABIX0",
-      "importance": [],
-      "location": "116.437255,39.960591",
-      "name": "应急总医院本院区新病房大楼",
-      "parent": "B0FFK6SVD1",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "西坝河南里29号楼(柳芳地铁站B东口步行480米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "877",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK6SVD1",
-      "importance": [],
-      "location": "116.436761,39.960263",
-      "name": "应急管理部应急总医院",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/2d03e2bd6659d7488bde32d83d827470"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/23efead82aa0bab928ebacd4f4e1f456"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/cd11b2e87acd4bddb9d74a5cbfc6b279"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64667755",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "北三环东路辅路与北三环东路出口交叉口东北200米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "964",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFITHRWC",
-      "importance": [],
-      "location": "116.444338,39.966854",
-      "name": "西坝河东里社区-医疗卫生服务站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/ddee7d883b04e4558bf8fb3bccff1a5e"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/5b5bb22197cfb8bff9c7e02665c669d5"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64663968",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -727,54 +38,18 @@
       "biz_type": [],
       "childtype": "307",
       "cityname": "北京市",
-      "distance": "2417",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_default",
-      "id": "B0FFFF8TVE",
-      "importance": [],
-      "location": "116.426833,39.973836",
-      "name": "中日友好医院急救站",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/2eadf415d1ac48640297419d48d2665f"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/3211c2cabb726a739d9353a3b7c1f132"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院|医疗保健服务;急救中心;急救中心",
-      "typecode": "090101|090400"
-    },
-    {
-      "address": "樱花园东街2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2474",
+      "distance": "766",
       "hospital_category": "三级甲等医院",
       "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG2V8FE",
+      "id": "B0FFF4M4BU",
       "importance": [],
-      "location": "116.426142,39.974037",
-      "name": "中日友好医院本部住院部",
-      "parent": "B000A8370S",
+      "location": "116.416113,39.913458",
+      "name": "北京协和医院东单院区病理科",
+      "parent": "B000A82Z2N",
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/646c81112312f180059915c5d9cc0077"
+          "url": "http://store.is.autonavi.com/showpic/219378a2ec4aff4ec1d4fb0d298017a0"
         }
       ],
       "pname": "北京市",
@@ -786,47 +61,7 @@
       "typecode": "090101"
     },
     {
-      "address": "北三环东路香河园光熙门北里34号楼",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1501",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFKWN0GQ",
-      "importance": [],
-      "location": "116.435650,39.968851",
-      "name": "太阳宫医院",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/381054026c570404d99365e516ed7432"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/f84ce7430494b9948467e740d42cddfd"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/01452dad35a51fdfe085083d6873ec57"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64212478",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "美术馆后街10号",
+      "address": "东四街道朝内大街97号后门",
       "adname": "东城区",
       "biz_ext": {
         "cost": [],
@@ -835,528 +70,30 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "4242",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0LDFRS5WC",
-      "importance": [],
-      "location": "116.410198,39.932572",
-      "name": "北京急救中心120景山急救工作站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/a7a23a20ed83eb15e60e370e1bd0e251"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院B栋4层",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2474",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0JUPZV6TX",
-      "importance": [],
-      "location": "116.426346,39.974188",
-      "name": "中日友好医院本部疼痛科门诊",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "第三置业东域大厦A座珍贝羊绒右侧底商",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "456",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0JRCH6JE7",
-      "importance": [],
-      "location": "116.451040,39.960849",
-      "name": "晔美荟医疗美容诊所",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/63f3a9077300ee7466f7949776abfcd4"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e18a9291f32599a545c162181f03cd78"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/c8a17f8b44dc441a71595c77db4e84dc"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "4008398273;4009591602",
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
-    },
-    {
-      "address": "柳芳北里乙12号楼2层1-51层1-2",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "715",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0LGM5EVJK",
-      "importance": [],
-      "location": "116.439366,39.955349",
-      "name": "北京兴治中医诊所",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/80ac5a547b922231e6a833d3950d7378"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/65f44c035b6fbbfcf4e6ff6ede6cb7bd"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/bdbc49e5f420de8a3d32f5ec5a0a3205"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "13522871682;18516990417",
-      "type": "医疗保健服务;专科医院;专科医院|医疗保健服务;诊所;诊所",
-      "typecode": "090200|090300"
-    },
-    {
-      "address": "西坝河南里29号应急总医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "909",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK71AG0",
-      "importance": [],
-      "location": "116.436461,39.960522",
-      "name": "应急总医院本院区住院部",
-      "parent": "B0FFK6SVD1",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/d9e7fd3b7a8a955dfd7b6c5ce940aad8"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "和平街十三区1号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "1390",
+      "distance": "990",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B0FFFVGRTT",
+      "id": "B0FFH59L2O",
       "importance": [],
-      "location": "116.431332,39.962438",
-      "name": "朝阳区和平街社区卫生服务中心",
-      "parent": "B0FFFV9EKP",
+      "location": "116.427310,39.925182",
+      "name": "东城区朝内头条社区卫生服务站",
+      "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e54a8e68086269fd3a6247f44a73015a"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/190f825ac89245bf4905d24e4672eef7"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/78119a64854b18f7bc552e229ee8c8d9"
+          "url": "http://store.is.autonavi.com/showpic/7052989d6d1eabeb5f522c8a3291d9e8"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-64202326;010-64202514;010-64216762",
+      "tel": "010-64015610",
       "type": "医疗保健服务;综合医院;卫生院",
       "typecode": "090102"
     },
     {
-      "address": "曙光西路甲6号时间国际A座606-607",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "620",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0IUPR9OBL",
-      "importance": [],
-      "location": "116.451553,39.962583",
-      "name": "赛德阳光口腔(北京三元桥总院)",
-      "parent": "B0FFH3REU4",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/3b0278234b3ef1df444b8c5a036382c9"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/f55c8b3edeaa91508e599d24f3b5200b"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/0d234841fb278a95933610825920f08b"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "4008007676",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "霞光里北街与霞光里东路交叉口西80米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1268",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0IBUZL3QJ",
-      "importance": [],
-      "location": "116.461159,39.961222",
-      "name": "北京急救120",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/15f703faca49be46d1b41dc61e51efb5"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6af70470f62619fe38aeccc5e4effeab"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/a87db42264253c7c3fb1ddf62bba81da"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "北土城东路5号院(惠新西街南口地铁站C东南口步行220米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "3040",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0KD95GW8I",
-      "importance": [],
-      "location": "116.420519,39.976877",
-      "name": "北京急救120",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6d116e69f0a738ca17d3187b08145788"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/3b56162bce107ad58c2b0abb3996aa8d"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2337",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG2UD9N",
-      "importance": [],
-      "location": "116.428355,39.973951",
-      "name": "中日友好医院本部J栋病房楼",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2400",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFGVILP9",
-      "importance": [],
-      "location": "116.426091,39.973029",
-      "name": "中日友好医院本部感染疾病科肠道门诊",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/4d44459987b2798edf066ac8602af754"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "凤凰环路东域大厦A座底商01",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "473",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0IGPCL15P",
-      "importance": [],
-      "location": "116.451086,39.961057",
-      "name": "北京维茵口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/ce272aa7b6c7b0a223f4281566456745"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/44f105dc7253de54b47832dedae043d8"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/510ea1f3519494481adb1d5644a0621d"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "曙光西里甲1号商业1层-2层",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "485",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0L6GDETIE",
-      "importance": [],
-      "location": "116.451731,39.960514",
-      "name": "整齐娃娃口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/64ace764b24fa96c436bdf73cfb150af"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/a6f2e62fc8e211795b287d44bc051130"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "4000752788",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "西坝河东里社区西区77号楼(西坝河地铁站C口步行80米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "645",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0FFKS9XFH",
-      "importance": [],
-      "location": "116.445628,39.964128",
-      "name": "圣恩医美",
-      "parent": "B000A9NVL4",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/593601de8d570c825b893d1345fc0de2"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/c17c847c4928af51d27261b6c06fa481"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "4008317952",
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
-    },
-    {
-      "address": "霞光里北街与霞光里东路交叉口西80米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1268",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0LBTC5F6Y",
-      "importance": [],
-      "location": "116.461159,39.961222",
-      "name": "北京急救",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/8f5b868139c759eb71dd34a8b8cbb548"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "朝阳门北小街8号",
+      "address": "建国门街道后赵家楼胡同9号",
       "adname": "东城区",
       "biz_ext": {
         "cost": [],
@@ -1365,222 +102,34 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "3850",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0KAZHCM87",
-      "importance": [],
-      "location": "116.426783,39.927377",
-      "name": "北京急救中心120北小街急救工作站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e25d41a8278e1b174a873ff2827fc26a"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/4b44b53692f17a27ce8125fe945d948b"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/5cd0f61d6cc3da9ac860af042e33d929"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "向军南里二巷5-4号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "4218",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0L6PZ0P1E",
-      "importance": [],
-      "location": "116.460032,39.921891",
-      "name": "北京急救120呼家楼急救工作站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/36eedd43d49dd16265542445e8e5391c"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "柳芳地铁站B东口步行240米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": "339.00",
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "1118",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_default",
-      "id": "B000A8VYVB",
-      "importance": [],
-      "location": "116.433688,39.959216",
-      "name": "应急总医院健康体检中心",
-      "parent": "B0FFK6SVD1",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/ff72ef891f5b3fbf38ae507a028cd2ce"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/43ea39b49cfa020f9dee36ae6f6bd4c3"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e0b8860d58d9b327ba4f1e89bb3492ab"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64200199;010-64667755;13810049167",
-      "type": "医疗保健服务;专科医院;整形美容|医疗保健服务;综合医院;综合医院",
-      "typecode": "090201|090100"
-    },
-    {
-      "address": "七圣路6号院",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "1288",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFIKTZCZ",
-      "importance": [],
-      "location": "116.435304,39.965934",
-      "name": "北京光熙康复医院",
-      "parent": "B0FFFSEVME",
-      "photos": [
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0FFIKTZCZ/headerImg/a521e3def6fe335b3bc99015dc555b19_2048_2048_80.jpg"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/50a574e75583207abca808b5efa7485d"
-        },
-        {
-          "title": [],
-          "url": "http://aos-cdn-image.amap.com/sns/ugccomment/68456982-f3dc-4900-a1fd-9408a5338af2.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64281068",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "东土城路和平里砖角楼北里交通部宿舍院平房",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "1471",
+      "distance": "1272",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B000A87JQ3",
+      "id": "B0FFJ247RX",
       "importance": [],
-      "location": "116.429690,39.956478",
-      "name": "砖角楼社区卫生服务站",
-      "parent": "B000A9E8SM",
+      "location": "116.430288,39.914150",
+      "name": "建国门社区卫生服务站保健科",
+      "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/53b37441a310a21470adef71"
+          "url": "http://store.is.autonavi.com/showpic/72f5101935529f9e019192dff50d9ac6"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/d05f100c83af73acc573349c6918272d"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-64226489",
+      "tel": "010-65251266",
       "type": "医疗保健服务;综合医院;卫生院",
       "typecode": "090102"
     },
     {
-      "address": "北京城区曙光里45号1-3层",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "734",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0HBBC6FTJ",
-      "importance": [],
-      "location": "116.449276,39.964698",
-      "name": "极简口腔(三元桥院)",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/90df7c54058e1f35262e4298639d57e6"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/4e65ea284ecd612d93eb038fa3d633a2"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0HBBC6FTJ/comment/3bb06235fda212d5158a0ae74b4b8240_2048_2048_80.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-67344710",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "中绦胡同(鼓楼大街地铁站F东北口步行350米)",
+      "address": "东四北大街526号(东四地铁站B东北口步行90米)",
       "adname": "东城区",
       "biz_ext": {
         "cost": [],
@@ -1589,31 +138,35 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "4284",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B000A7HD31",
+      "distance": "580",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0HGOHW7VA",
       "importance": [],
-      "location": "116.398355,39.948162",
-      "name": "北京市东城区急救站",
+      "location": "116.417678,39.925452",
+      "name": "东城区三条社区卫生服务站",
       "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/539938caa310b133764c65c9"
+          "url": "http://store.is.autonavi.com/showpic/a55538f52c5a0fd6d05a80d397a61e05"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/cdb298cab38c0597770505d824aa5476"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-64035289",
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
+      "tel": "010-64006790",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
     },
     {
-      "address": "西坝河南里29号应急总医院内",
-      "adname": "朝阳区",
+      "address": "帅府园1号北京协和医院内(金鱼胡同地铁站B东口步行480米)",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -1621,66 +174,39 @@
       "biz_type": [],
       "childtype": "318",
       "cityname": "北京市",
-      "distance": "899",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK71AFT",
+      "distance": "718",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFG2TVCI",
       "importance": [],
-      "location": "116.436507,39.960296",
-      "name": "应急总医院本院区急诊",
-      "parent": "B0FFK6SVD1",
+      "location": "116.415704,39.913964",
+      "name": "北京协和医院东单院区急诊",
+      "parent": "B000A82Z2N",
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/d186a2011965cdbcd39851426e084bd0"
+          "url": "http://store.is.autonavi.com/showpic/9c45390f3b6e7bcc0382f84e698b0fcf"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/1cad70a9ac1ea7d790a99233806678f9"
+          "url": "http://store.is.autonavi.com/showpic/566d720b94afcdc8c5ce769529d61615"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6d9bfd901ea57f8ed910f41105a1e16f"
+          "url": "http://store.is.autonavi.com/showpic/5288ca011e42641de702618ff88fc519"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "16600015263",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2309",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0J3LAOFKB",
-      "importance": [],
-      "location": "116.428351,39.973604",
-      "name": "中日友好医院本部K1住院楼",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
+      "tel": "010-69151188",
       "type": "医疗保健服务;综合医院;三级甲等医院",
       "typecode": "090101"
     },
     {
-      "address": "樱花园东街2号中日友好医院",
-      "adname": "朝阳区",
+      "address": "帅府园1号北京协和医院东单院区门诊楼F1层",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -1688,26 +214,26 @@
       "biz_type": [],
       "childtype": "307",
       "cityname": "北京市",
-      "distance": "2368",
+      "distance": "736",
       "hospital_category": "三级甲等医院",
       "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG2UDLV",
+      "id": "B000A9Q615",
       "importance": [],
-      "location": "116.428283,39.974280",
-      "name": "中日友好医院本部血透中心",
-      "parent": "B000A8370S",
+      "location": "116.416819,39.913653",
+      "name": "北京协和医院东单院区发热门诊",
+      "parent": "B000A82Z2N",
       "photos": [],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-84205121",
+      "tel": [],
       "type": "医疗保健服务;综合医院;三级甲等医院",
       "typecode": "090101"
     },
     {
-      "address": "七圣庙中街6号院",
-      "adname": "朝阳区",
+      "address": "王府井大街与甘雨胡同交叉口西80米",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -1715,39 +241,66 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "1675",
+      "distance": "744",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B0FFJDSVMB",
+      "id": "B0LD24HUH1",
       "importance": [],
-      "location": "116.440207,39.972583",
-      "name": "太阳宫社区卫生服务中心",
+      "location": "116.410171,39.916821",
+      "name": "高日罕卫生院",
       "parent": [],
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "帅府园1号(灯市口地铁站C东南口步行470米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "317",
+      "cityname": "北京市",
+      "distance": "771",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFG2TVK4",
+      "importance": [],
+      "location": "116.416644,39.913346",
+      "name": "北京协和医院东单院区门诊楼",
+      "parent": "B000A82Z2N",
       "photos": [
         {
           "title": [],
-          "url": "https://aos-comment.amap.com/B0FFJDSVMB/comment/content_media_external_images_media_1000088244_ss__1744161632476_48605249.jpg"
+          "url": "http://store.is.autonavi.com/showpic/05bdb5ee4f6448de2e4f97a972b07aed"
         },
         {
           "title": [],
-          "url": "https://aos-comment.amap.com/B0FFJDSVMB/comment/content_media_external_file_29597_ss__1744351379141_15344223.jpg"
+          "url": "https://aos-comment.amap.com/B0FFG2TVK4/comment/1b20712d9990cb8fe4e8ada0e467124d_2048_2048_80.jpg"
         },
         {
           "title": [],
-          "url": "https://aos-comment.amap.com/B0FFJDSVMB/comment/content_media_external_images_media_19307_ss__1741044735140_62555856.jpg"
+          "url": "https://aos-comment.amap.com/B0FFG2TVK4/comment/40eac81680693d17868044373ccbfd94_2048_2048_80.jpg"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-87486167",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
     },
     {
-      "address": "太阳宫路附近",
-      "adname": "朝阳区",
+      "address": "外交部街甲1号",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -1755,26 +308,86 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "1695",
+      "distance": "1099",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B0FFI0E9IW",
+      "id": "B0G3TAPQ5Z",
       "importance": [],
-      "location": "116.439550,39.972592",
-      "name": "太阳宫社区康复医院新院",
+      "location": "116.426398,39.912976",
+      "name": "东城区外交部街社区卫生服务站",
       "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/7cb6b2e728764483d9ee5a5df9d3a94a"
+          "url": "http://store.is.autonavi.com/showpic/d2a1d1dd29b867f2651919bcd63cec21"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65281974",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "朝阳门街道小牌坊胡同30号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1313",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B000A7OUR9",
+      "importance": [],
+      "location": "116.432967,39.918995",
+      "name": "东城社区卫生服务站(小牌坊胡同)",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/c0be6902e05419fe94ed6b9b745cb929"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-85111691",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "罗家大院1号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1478",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFG733HF",
+      "importance": [],
+      "location": "116.430986,39.928734",
+      "name": "东城区东四社区卫生服务中心站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/8d253b892981bb0bd62271b46ee1e7df"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/cf7ca4b08092b9272f28a00cb8090246"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/25dfd450eff6792c0a74058a7e36967f"
+          "url": "http://store.is.autonavi.com/showpic/b1c2aa93672c29d8bddab3ddd69b3695"
         }
       ],
       "pname": "北京市",
@@ -1786,8 +399,998 @@
       "typecode": "090102"
     },
     {
-      "address": "麦子店街道霞光里8号院",
+      "address": "东四南大街灯草胡同31号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "195",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B000A4CEB5",
+      "importance": [],
+      "location": "116.419266,39.921498",
+      "name": "东城区朝阳门社区卫生服务中心",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/ec85f5079dde6b5b48c0d7a7be3fabdd"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/2bf9ada26c418dd56f7e576242eb1c03"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/6d1e75400ee7c19e3e27117c0b408200"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65138019;010-65135579",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "白米仓胡同乙16号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1825",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0I0YSTB3G",
+      "importance": [],
+      "location": "116.413190,39.936271",
+      "name": "东城区交道口社区卫生服务中心",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/74b3bcf49eea806770fb5729b31d15a4"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "交道口南大街136号(南锣鼓巷地铁站F东北口步行480米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1785",
+      "hospital_category": "妇科医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B000A81FJC",
+      "importance": [],
+      "location": "116.409286,39.934926",
+      "name": "东城区妇幼保健院",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/b3224a69a7ba1444c7699e8f859e5427"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/fc0c3caaa25246dee7dd7bbcbc343a97"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/3b28763905de2fdfc860edcf6f75a32f"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-64042050;010-64048899",
+      "type": "医疗保健服务;专科医院;妇科医院",
+      "typecode": "090209"
+    },
+    {
+      "address": "朝外头条与司法部南街交叉口南140米",
       "adname": "朝阳区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1602",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0JK3CFHVW",
+      "importance": [],
+      "location": "116.436087,39.917469",
+      "name": "北京市社区卫生服务",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/a817b6d4a5be4849d92459e8eefcba24"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "帅府园一号(灯市口地铁站C东南口步行440米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "753",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFFD3DVH",
+      "importance": [],
+      "location": "116.416690,39.913505",
+      "name": "北京协和医院东单院区痛风科",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院东单院区门诊楼F7层H07011",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "759",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4M242",
+      "importance": [],
+      "location": "116.416507,39.913473",
+      "name": "北京协和医院东单院区检验科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/db678d523af243d50237baa18f79aa84"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "协和医院门诊楼7层(灯市口地铁站C东南口步行420米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "765",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4HGP0",
+      "importance": [],
+      "location": "116.417115,39.913368",
+      "name": "北京协和医院风湿免疫科实验室",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/af19265d4443e19a3960d9f1e17871ea"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院(东单院区)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "774",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4LVKA",
+      "importance": [],
+      "location": "116.417480,39.913277",
+      "name": "北京协和医院东单院区变态反应科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/0e3a2ce44139d53b94b6561b2d28e64e"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东华门街道韶九胡同22号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "929",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFG5A1G6",
+      "importance": [],
+      "location": "116.407745,39.916814",
+      "name": "东城区韶九社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/f1e1e34ddbbad5b3edcd91d21f5feb29"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65245200",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "苏州胡同120号(东单地铁站G东南口步行280米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1664",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B000A7WFD8",
+      "importance": [],
+      "location": "116.419947,39.905384",
+      "name": "东城区苏州社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/3212b58a4529f703be3ee6dd5d691c55"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/577179ba131550c936cadc946a5b3434"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/2888ead50e98ab96faa4b6dad6545635"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65124640",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "东三环中路9号富尔大厦F23层",
+      "adname": "朝阳区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "202",
+      "cityname": "北京市",
+      "distance": "3725",
+      "hospital_category": "妇科医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0GDO7QGKI",
+      "importance": [],
+      "location": "116.460805,39.915159",
+      "name": "奇果孕育健康管理中心",
+      "parent": "B0FFFAF941",
+      "photos": [
+        {
+          "title": [],
+          "url": "https://aos-comment.amap.com/B0GDO7QGKI/headerImg/8732655ce621ac1532a5211decc2cdd3_2048_2048_80.jpg"
+        },
+        {
+          "title": [],
+          "url": "https://aos-comment.amap.com/B0GDO7QGKI/headerImg/6ab44c6817761a1a2d9497122e7ad66b_2048_2048_80.jpg"
+        },
+        {
+          "title": [],
+          "url": "https://aos-comment.amap.com/B0GDO7QGKI/headerImg/2df212e0d579e7572c9d07d214190be5_2048_2048_80.jpg"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;专科医院;妇科医院",
+      "typecode": "090209"
+    },
+    {
+      "address": "协和医院门诊楼3层(灯市口地铁站C东南口步行420米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "751",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF44EVI",
+      "importance": [],
+      "location": "116.417311,39.913493",
+      "name": "北京协和医院东单院区妇产科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/bea885e2bb83c136642853aaad881106"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院东单院区门诊楼F8层G08049",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "759",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4AAP9",
+      "importance": [],
+      "location": "116.416670,39.913459",
+      "name": "北京协和医院东单院区病案科",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四北大街247(张自忠路地铁站D西南口步行160米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1295",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFKL3HHW",
+      "importance": [],
+      "location": "116.417028,39.931862",
+      "name": "东城区魏家社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/2b9856dbbbb36c16dcc39dd510fc31b3"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-84032330",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "美术馆后街12号(近山老胡同)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1497",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFFDMP5N",
+      "importance": [],
+      "location": "116.410019,39.932340",
+      "name": "东城区宽街社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/aeddb657ea8b406fac3b44f8ccfd3bbd"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/53a0ef16a310b133764ec320"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "北京协和医院门诊楼5层(灯市口地铁站C东南口步行450米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "758",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4FJ5J",
+      "importance": [],
+      "location": "116.417390,39.913421",
+      "name": "北京协和医院东单院区内分泌科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/c3894de580a87f22797e47da66a1c71b"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号(灯市口地铁站C东南口步行480米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "778",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A7AA66",
+      "importance": [],
+      "location": "116.417345,39.913249",
+      "name": "北京协和医院东单院区体检中心",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四六条62-2号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1118",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B000A7OURC",
+      "importance": [],
+      "location": "116.420139,39.930104",
+      "name": "东城区东四社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/aa05775179a8a7a3d859aa984c530335"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-64017470;010-65282009",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "北京妇产医院南门旁",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1146",
+      "hospital_category": "妇科医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0FFHZS752",
+      "importance": [],
+      "location": "116.404240,39.920163",
+      "name": "北京妇产微创诊治中心",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/d8a2aa89444a8cba6a7c8d37bf4915d8"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;专科医院;妇科医院",
+      "typecode": "090209"
+    },
+    {
+      "address": "新街口南大街119号(平安里地铁站A西北口步行190米)",
+      "adname": "西城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "4230",
+      "hospital_category": "精神医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0HGF766CU",
+      "importance": [],
+      "location": "116.372617,39.936072",
+      "name": "北京市西城区精神卫生保健所",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/b9bab74773128c0d2d5f9b8677b56a2d"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/e7918d1817ff8053917a97bcf3108edc"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/e4c66df2695f5eed38983d90ebec46f1"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;专科医院;精神病医院",
+      "typecode": "090210"
+    },
+    {
+      "address": "帅府园1号北京协和医院东单院区门诊楼F1层",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "744",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0IADL2TR6",
+      "importance": [],
+      "location": "116.416680,39.913586",
+      "name": "北京协和医院东单院区门诊楼肠道门诊",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院(东单院区)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "759",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_default",
+      "id": "B0FFFR928D",
+      "importance": [],
+      "location": "116.417345,39.913416",
+      "name": "北京协和医院东单院区口腔科特需门诊",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/4de15fcf03344c019e48e2ea75c9126e"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院|医疗保健服务;专科医院;口腔医院",
+      "typecode": "090101|090202"
+    },
+    {
+      "address": "帅府园1号北京协和医院(东单院区)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "774",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000AA4GCQ",
+      "importance": [],
+      "location": "116.417114,39.913294",
+      "name": "北京协和医院东单院区儿科门诊",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/f8fe06112e32a458a414cf1cd993ce40"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院(东单院区)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "775",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4LSE5",
+      "importance": [],
+      "location": "116.417198,39.913277",
+      "name": "北京协和医院东单院区皮肤科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/8841c7bdfead294acfc62652a1d376c9"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-69151510",
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "磁器库南巷1号",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1277",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B000AA16NU",
+      "importance": [],
+      "location": "116.405579,39.913483",
+      "name": "东城区东华门社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/5e3bae66b204d42e2ce04b9305bd42ca"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/2c71aa5e9f0b58af9a310fc1a3939184"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/d0366412b3a1c79dd298d0e5662377b0"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65256101",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "台基厂大街台基厂二条3号(东单地铁站H西南口步行490米)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "1677",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFFAJS3P",
+      "importance": [],
+      "location": "116.415531,39.905253",
+      "name": "东城区台基厂社区卫生服务站",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/65ca5f31755dc606517bf385c2e7e4c6"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/b565e700b6675403f099eb3af45987a0"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65126450",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": [],
+      "adname": "朝阳区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "3324",
+      "hospital_category": "妇科医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0KK2SPXJR",
+      "importance": [],
+      "location": "116.456604,39.919540",
+      "name": "北京沃医妇科诊所",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/372196e599c738731dfbbaf67ad87ee9"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;专科医院;妇科医院",
+      "typecode": "090209"
+    },
+    {
+      "address": "和平里北街5号",
+      "adname": "朝阳区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "4551",
+      "hospital_category": "妇科医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0LBF5Z7BC",
+      "importance": [],
+      "location": "116.430952,39.959836",
+      "name": "北京和平中西医医院妇科",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/74f2835df6608e8c191fb35c19922031"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/8770e67d44be3d072b407537d2578789"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-53325510",
+      "type": "医疗保健服务;专科医院;妇科医院",
+      "typecode": "090209"
+    },
+    {
+      "address": "帅府园1号北京协和医院东单院区门诊楼F5层G05067",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "752",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0IADL1JSV",
+      "importance": [],
+      "location": "116.416903,39.913501",
+      "name": "北京协和医院东单院区门诊楼皮肤科皮肤影像诊断中心",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "帅府园1号北京协和医院东单院区门诊楼F6层",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "748",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0IADL1JTG",
+      "importance": [],
+      "location": "116.416893,39.913540",
+      "name": "北京协和医院东单院区门诊楼变态过敏反应科特需门诊11-12",
+      "parent": "B000A82Z2N",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "后赵家楼胡同9号",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -1796,991 +1399,33 @@
       "childtype": [],
       "cityname": "北京市",
       "distance": "1279",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0IGFMPNQ6",
-      "importance": [],
-      "location": "116.461329,39.961081",
-      "name": "应急总医院(东院区)",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/794b42ba0706ff77e324c44503e4f360"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/ba863f40b672c149e6c8c1a25fb50e7c"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0IGFMPNQ6/comment/IMG_20250614_144203_tem_1749883333167_08686434.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-87994999",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "左家庄街道新源里16号琨莎中心一座105室",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "1159",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_default",
-      "id": "B0FFGYKO1K",
-      "importance": [],
-      "location": "116.450177,39.948310",
-      "name": "北京莱佛士医院",
-      "parent": "B000A85FIN",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/272364abb39adceef2f2cbb16e92c505"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/d8c02e7431a584d6d5856aa6404ea1ab"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/20cfe2b912004508eb993a30d5964888"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-87937700",
-      "type": "医疗保健服务;综合医院;综合医院|医疗保健服务;诊所;诊所",
-      "typecode": "090100|090300"
-    },
-    {
-      "address": "樱花园东街2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "2435",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B000A8370S",
-      "importance": [],
-      "location": "116.426883,39.974097",
-      "name": "中日友好医院本部",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/df28a3078eba3c21295455d7f346832f"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B000A8370S/comment/42fe97c1fa618d86f99815bff6a649af_2048_2048_80.jpg"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B000A8370S/comment/content_media_external_images_media_1000132478_ss__1741819918843_56799641.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84205566",
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "静安里中区东南门南50米",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "127",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0J0YCTLNN",
-      "importance": [],
-      "location": "116.448234,39.958567",
-      "name": "贝博悦齐口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/48c7148533d0f68d5f3fc86c3a3a0308"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0J0YCTLNN/headerImg/e4637348b6e1b628373fc341abd8c3c8_2048_2048_80.jpg"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "18518934926",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "应急管理部应急总医院",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "885",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0IKOS55KW",
-      "importance": [],
-      "location": "116.436621,39.960114",
-      "name": "应急总医院本院区发热门诊",
-      "parent": "B0FFK6SVD1",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "西坝河南里29号应急总医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "317",
-      "cityname": "北京市",
-      "distance": "896",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK71AFN",
-      "importance": [],
-      "location": "116.436513,39.960210",
-      "name": "应急总医院本院区门诊部",
-      "parent": "B0FFK6SVD1",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/17a4fc72709ab5b1d1426118ab4af3c0"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/83f4b8f463f56251d375608ee2a2c7de"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/f47dc5b6500c1af21528b4d413f66714"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64667755",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "319",
-      "cityname": "北京市",
-      "distance": "2339",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG2UDR7",
-      "importance": [],
-      "location": "116.428333,39.973957",
-      "name": "中日友好医院本部病房楼",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2340",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFHI3H42",
-      "importance": [],
-      "location": "116.428384,39.974013",
-      "name": "中日友好医院本部中医糖尿病科",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84205050",
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2393",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFFRM2PD",
-      "importance": [],
-      "location": "116.426112,39.972949",
-      "name": "中日友好医院本部感染疾病科",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6ae0ec19a974c168a946ba42d4de99a2"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "308",
-      "cityname": "北京市",
-      "distance": "2409",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFG2UFJS",
-      "importance": [],
-      "location": "116.427758,39.974413",
-      "name": "中日友好医院本部手术楼",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "曙光西里甲6号院9号楼2-20",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": "0.4"
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "645",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0FFJCXCLE",
-      "importance": [],
-      "location": "116.449752,39.963719",
-      "name": "北京焕星医疗美容",
-      "parent": "B0FFF76EMQ",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/5b55f1221ed727b2b122da749f73db9b"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/0dcac48225d84515d059780d0e6ef100"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6b323000c5e4b3d19c3abe5328f1ea2d"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "18611694499;4009137802;4009591532",
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
-    },
-    {
-      "address": "工人体育场南路8号西门(东大桥地铁站B东北口步行340米)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "308",
-      "cityname": "北京市",
-      "distance": "3623",
-      "hospital_category": "急救中心",
-      "icon_type": "icon_emergency",
-      "id": "B0FFHGNXPP",
-      "importance": [],
-      "location": "116.452056,39.926095",
-      "name": "北京急救中心120朝阳CBD急救工作站",
-      "parent": "B000A845NT",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6d5364a3598db1154e1a51f45ab13f32"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/14be04e11422fcffb05ed4b8d0d99ce3"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-87789999",
-      "type": "医疗保健服务;急救中心;急救中心",
-      "typecode": "090400"
-    },
-    {
-      "address": "香河园中里14号楼附近",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "336",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B0FFKOIDMA",
+      "id": "B0FFG6V335",
       "importance": [],
-      "location": "116.447824,39.955486",
-      "name": "北京市朝阳区左家庄街道静安东里社区卫生服务站",
-      "parent": "B000A7H6V1",
+      "location": "116.430464,39.914249",
+      "name": "东城区建国门社区卫生服务中心",
+      "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "https://aos-comment.amap.com/B0FFKOIDMA/headerImg/3754d4e450370e56a4011ca030c9edf9_2048_2048_80.jpg"
+          "url": "http://store.is.autonavi.com/showpic/678e0f1885a1b8b54b21f4a8ae594837"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/f0e4006933c73ac3f7cd6d3d08fe32c5"
-        },
-        {
-          "title": [],
-          "url": "https://aos-comment.amap.com/B0FFKOIDMA/headerImg/e71a243cc28a1a241e9575519ca968c7_2048_2048_80.jpg"
+          "url": "http://store.is.autonavi.com/showpic/c6244f933a5c61134890f58e7a09f23b"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": [],
+      "tel": "010-65251266;010-65256218",
       "type": "医疗保健服务;综合医院;卫生院",
       "typecode": "090102"
     },
     {
-      "address": "太阳宫北街新纪家园8号楼东侧(凯德MALL东北)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1657",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B0FFFFZ98R",
-      "importance": [],
-      "location": "116.451316,39.972869",
-      "name": "西坝河北里社区卫生服务站",
-      "parent": [],
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "西坝河南里7号楼对面平房",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "903",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B000A84CQM",
-      "importance": [],
-      "location": "116.437057,39.961656",
-      "name": "柳芳南里社区卫生服务站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/53acdd2ba3106c892e6e7c7b"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/eba2f3a6daecffa6e4e1205e24cdceba"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/fa19311d8f48e31a2c7e584db66b3b97"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84544996",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2中日友好医院",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "317",
-      "cityname": "北京市",
-      "distance": "2279",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFH8MQDS",
-      "importance": [],
-      "location": "116.428137,39.973083",
-      "name": "中日友好医院本部K3国际医疗门诊楼",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/fe5bc667e9cc94794dc4f482b898c95f"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "静安东街静安里社区19号丙楼1层(近国际友谊花园)",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "121",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B000A81K4X",
-      "importance": [],
-      "location": "116.446402,39.957340",
-      "name": "恒瑞口腔",
-      "parent": "B000A9EFQ2",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/0617c97de660e9078ebb333678a6665a"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/2782c5690b2ce1664a3f46fc6710173c"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/93ab7d9c097ff5004b56a11c1a4297ce"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84542762;010-84543843",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "左家东里9号楼一层9-10",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "419",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B0LB377P0X",
-      "importance": [],
-      "location": "116.444554,39.955025",
-      "name": "北京椿天口腔",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/49fe2d4c0b5530c7465fbc8278588859"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/902f2ce0ffd77064001338d989424909"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/89f57133940ac64e508ae30cf5e0d59d"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64635680;18611990781",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "曙光西里甲5号院24号楼凤凰汇购物中心L1层",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "787",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B000A9V6B1",
-      "importance": [],
-      "location": "116.453457,39.963253",
-      "name": "懿锐口腔(凤凰汇购物中心)",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/e633deae93059084aa12d0b6268c0df1"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/baadea4c545896eaa42b80739b3abf72"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-58667782",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "西坝河南里29号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "880",
-      "hospital_category": "综合医院",
-      "icon_type": "icon_general_hospital",
-      "id": "B0FFK71A8H",
-      "importance": [],
-      "location": "116.436700,39.960168",
-      "name": "应急总医院本院区医学美容整形中心",
-      "parent": "B0FFK6SVD1",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/587b84508a39c73e370045fdcab4fc87"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-59059181",
-      "type": "医疗保健服务;综合医院;综合医院",
-      "typecode": "090100"
-    },
-    {
-      "address": "樱花东街甲2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2389",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0IKLRTYXY",
-      "importance": [],
-      "location": "116.426092,39.972886",
-      "name": "中日友好医院本部发热门诊",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/fbb62c745ac57474ed7f217c7ce3e73c"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84205955",
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院本部",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": "22.00",
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2437",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFHTQ1HZ",
-      "importance": [],
-      "location": "116.426875,39.974125",
-      "name": "中日友好医院-呼吸与重症3部",
-      "parent": "B000A8370S",
-      "photos": [],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "霄云路霞光里社区30号院内4号楼北侧养老驿站院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "1384",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B000A7QSA6",
-      "importance": [],
-      "location": "116.462907,39.959522",
-      "name": "霞光里社区卫生服务站",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/4fb0d9bbde5c5c654117f14ec773ef42"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/6d1673fef686e4446b9cb0f30aa51e77"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/fde19929ba10f0eccbbf21f8ade1a33c"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64632529",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "香河园中里5号楼首层底商",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "202",
-      "cityname": "北京市",
-      "distance": "487",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_tooth",
-      "id": "B000A5FD25",
-      "importance": [],
-      "location": "116.447812,39.954091",
-      "name": "北京奥博口腔门诊部",
-      "parent": "B000A9E41J",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/9098b2d97fdc519ebd7c3ef89a654f9d"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/37f6d903be6269b1079e2dd938680669"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64667084",
-      "type": "医疗保健服务;专科医院;口腔医院",
-      "typecode": "090202"
-    },
-    {
-      "address": "曙光西里甲6号院时间国际5-6号楼1-2层",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": "4.5"
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "623",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0FFIBGJKP",
-      "importance": [],
-      "location": "116.451019,39.962942",
-      "name": "美神煦氰美啦",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/aefcee754cb7c8d24b817326cd68b7a6"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/79d365a970444e55833eed570665f6bb"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/445201e7f04f72248bcf3a890d91b6ab"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-59773024;010-59773031",
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
-    },
-    {
-      "address": "柳芳南里15号楼",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": [],
-      "cityname": "北京市",
-      "distance": "978",
-      "hospital_category": "社区医院",
-      "icon_type": "icon_health_center",
-      "id": "B000A84O34",
-      "importance": [],
-      "location": "116.436921,39.953867",
-      "name": "香河园社区卫生服务中心",
-      "parent": [],
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/17cc9f4f48e641da67572427de7b11b7"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/8959803f242ac636677ec8ff16629883"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/2a06c49c783eba4b1e8a7a7994d70651"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-64686736;010-84514425",
-      "type": "医疗保健服务;综合医院;卫生院",
-      "typecode": "090102"
-    },
-    {
-      "address": "樱花园东街2号",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "307",
-      "cityname": "北京市",
-      "distance": "2262",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B000A32878",
-      "importance": [],
-      "location": "116.428106,39.972842",
-      "name": "中日友好医院国际部",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/57bf3cf9c0856b65e893e86266d331d1"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/8c5224511add81c8a7c5a4c76b927cf5"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/244ada943ef91110266c78dc8af0b1db"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": "010-84205121;010-84205566",
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "樱花园东街2号中日友好医院内",
-      "adname": "朝阳区",
-      "biz_ext": {
-        "cost": [],
-        "rating": []
-      },
-      "biz_type": [],
-      "childtype": "317",
-      "cityname": "北京市",
-      "distance": "2475",
-      "hospital_category": "三级甲等医院",
-      "icon_type": "icon_tier3_hospital",
-      "id": "B0FFH83L7F",
-      "importance": [],
-      "location": "116.426017,39.973947",
-      "name": "中日友好医院本部B栋门诊楼",
-      "parent": "B000A8370S",
-      "photos": [
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/cfd6d7bb92a4f4baf46826aec785615f"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/ab984c694fe74236c7eab9a444d0fa7f"
-        },
-        {
-          "title": [],
-          "url": "http://store.is.autonavi.com/showpic/8464a0e3753f99765ec433e04d374d3f"
-        }
-      ],
-      "pname": "北京市",
-      "poiweight": [],
-      "shopid": [],
-      "shopinfo": "2",
-      "tel": [],
-      "type": "医疗保健服务;综合医院;三级甲等医院",
-      "typecode": "090101"
-    },
-    {
-      "address": "胡家园社区东区综合服务楼首层",
+      "address": "仓南胡同5号-1号附近",
       "adname": "东城区",
       "biz_ext": {
         "cost": [],
@@ -2789,35 +1434,35 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "1458",
+      "distance": "1467",
       "hospital_category": "社区医院",
       "icon_type": "icon_health_center",
-      "id": "B0K6NA4Y94",
+      "id": "B0FFG7336K",
       "importance": [],
-      "location": "116.446275,39.945299",
-      "name": "东直门社区卫生服务中心(北址)",
+      "location": "116.430966,39.928591",
+      "name": "东城区南门仓社区卫生服务站",
       "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/481795f7b7e828971bca6a4d740fde2e"
+          "url": "http://store.is.autonavi.com/showpic/d5121e573807e8a11b1d0def4a11461c"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/10bc5f993315e99ae99624f13da6fe7b"
+          "url": "http://store.is.autonavi.com/showpic/53bb5053a310502a4d112086"
         }
       ],
       "pname": "北京市",
       "poiweight": [],
       "shopid": [],
       "shopinfo": "2",
-      "tel": "010-64620544",
+      "tel": "010-84068240",
       "type": "医疗保健服务;综合医院;卫生院",
       "typecode": "090102"
     },
     {
-      "address": "西坝河东里77-6号1至2层(西坝河地铁站C口步行90米)",
-      "adname": "朝阳区",
+      "address": "报房胡同与大豆腐巷交叉口东20米",
+      "adname": "东城区",
       "biz_ext": {
         "cost": [],
         "rating": []
@@ -2825,22 +1470,90 @@
       "biz_type": [],
       "childtype": [],
       "cityname": "北京市",
-      "distance": "638",
-      "hospital_category": "专科医院",
-      "icon_type": "icon_default",
-      "id": "B0K1CUBVYK",
+      "distance": "285",
+      "hospital_category": "社区医院",
+      "icon_type": "icon_health_center",
+      "id": "B0FFIPIGJ4",
       "importance": [],
-      "location": "116.445679,39.964066",
-      "name": "华漾医美",
+      "location": "116.415256,39.922013",
+      "name": "东城区多福巷社区卫生服务站",
       "parent": [],
       "photos": [
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/5bc5874c037677a370c52f0888d1abf4"
+          "url": "http://store.is.autonavi.com/showpic/c3ff5991f42c0fac75db5d069df40c36"
         },
         {
           "title": [],
-          "url": "http://store.is.autonavi.com/showpic/481f5e7bf71df8ecea639744bf50d221"
+          "url": "http://store.is.autonavi.com/showpic/cfc410145ff67673e80eed9bce848aae"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-65127470",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "东直门外大街察慈小区7号楼",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "202",
+      "cityname": "北京市",
+      "distance": "3206",
+      "hospital_category": "精神医院",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0FFGYODGU",
+      "importance": [],
+      "location": "116.440454,39.943138",
+      "name": "北京市东城区精神卫生保健院",
+      "parent": "B0FFG4VO8W",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/f66ab33c83a3a77c463c6a4591b9d931"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/5f0e069cedb21be7211f2fe321007752"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-64681578",
+      "type": "医疗保健服务;专科医院;精神病医院",
+      "typecode": "090210"
+    },
+    {
+      "address": "帅府园1号北京协和医院(东单院区)",
+      "adname": "东城区",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "768",
+      "hospital_category": "三级甲等医院",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF4KHBV",
+      "importance": [],
+      "location": "116.417171,39.913345",
+      "name": "北京协和医院东单院区心理医学科",
+      "parent": "B000A82Z2N",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/5e6e7393872d0f3ae1d5654569fb8a9f"
         }
       ],
       "pname": "北京市",
@@ -2848,8 +1561,8 @@
       "shopid": [],
       "shopinfo": "2",
       "tel": [],
-      "type": "医疗保健服务;专科医院;整形美容",
-      "typecode": "090201"
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
     }
   ],
   "status": "1"

@@ -1,0 +1,109 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type POI struct {
+	Name     string
+	Location string
+}
+
+// 计算两个经纬度点的距离（米）
+func haversine(lon1, lat1, lon2, lat2 float64) float64 {
+	const R = 6371000
+	dLat := (lat2 - lat1) * math.Pi / 180.0
+	dLon := (lon2 - lon1) * math.Pi / 180.0
+	lat1 = lat1 * math.Pi / 180.0
+	lat2 = lat2 * math.Pi / 180.0
+	a := math.Sin(dLat/2)*math.Sin(dLat/2) + math.Sin(dLon/2)*math.Sin(dLon/2)*math.Cos(lat1)*math.Cos(lat2)
+	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
+	return R * c
+}
+
+// 解析location字符串为经纬度
+func parseLoc(loc string) (float64, float64) {
+	var lon, lat float64
+	fmt.Sscanf(loc, "%f,%f", &lon, &lat)
+	return lon, lat
+}
+
+// 最长公共子串
+func lcs(a, b string) string {
+	n, m := len(a), len(b)
+	dp := make([][]int, n+1)
+	for i := range dp {
+		dp[i] = make([]int, m+1)
+	}
+	maxLen, end := 0, 0
+	for i := 1; i <= n; i++ {
+		for j := 1; j <= m; j++ {
+			if a[i-1] == b[j-1] {
+				dp[i][j] = dp[i-1][j-1] + 1
+				if dp[i][j] > maxLen {
+					maxLen = dp[i][j]
+					end = i
+				}
+			}
+		}
+	}
+	return a[end-maxLen : end]
+}
+
+func main() {
+	pois := []POI{
+		{"北京协和医院东单院区发热门诊", "116.416819,39.913653"},
+		{"北京协和医院东单院区妇产科", "116.417311,39.913493"},
+		{"北京协和医院东单院区门诊楼肠道门诊", "116.416680,39.913586"},
+		{"北京协和医院东单院区门诊楼", "116.416644,39.913346"},
+		{"北京协和医院东单院区口腔科特需门诊", "116.417345,39.913416"},
+		{"北京协和医院东单院区门诊楼变态过敏反应科特需门诊11-12", "116.416893,39.913540"},
+	}
+	fmt.Println("共", len(pois), "条协和医院相关POI：")
+	for i, p := range pois {
+		fmt.Printf("%d. %s\t%s\n", i+1, p.Name, p.Location)
+	}
+	fmt.Println("\n两两最长公共子串和距离：")
+	for i := 0; i < len(pois); i++ {
+		for j := i + 1; j < len(pois); j++ {
+			lcsStr := lcs(pois[i].Name, pois[j].Name)
+			lon1, lat1 := parseLoc(pois[i].Location)
+			lon2, lat2 := parseLoc(pois[j].Location)
+			dist := haversine(lon1, lat1, lon2, lat2)
+			fmt.Printf("%d-%d: LCS=\"%s\"(%d), 距离=%.2fm\n", i+1, j+1, lcsStr, len([]rune(lcsStr)), dist)
+		}
+	}
+	// 简单分组：全部距离<300m且LCS>=4的分为一组
+	group := []int{0}
+	for i := 1; i < len(pois); i++ {
+		ok := false
+		for _, j := range group {
+			lcsStr := lcs(pois[i].Name, pois[j].Name)
+			lon1, lat1 := parseLoc(pois[i].Location)
+			lon2, lat2 := parseLoc(pois[j].Location)
+			dist := haversine(lon1, lat1, lon2, lat2)
+			if len([]rune(lcsStr)) >= 4 && dist < 300 {
+				ok = true
+				break
+			}
+		}
+		if ok {
+			group = append(group, i)
+		}
+	}
+	fmt.Println("\n合并分组：")
+	for _, idx := range group {
+		fmt.Printf("%d. %s\n", idx+1, pois[idx].Name)
+	}
+	// 生成新POI
+	if len(group) > 1 {
+		common := pois[group[0]].Name
+		for _, idx := range group[1:] {
+			common = lcs(common, pois[idx].Name)
+		}
+		fmt.Printf("\n新合并POI名称：%s\n", common)
+	} else {
+		fmt.Println("未能形成合并组")
+	}
+}

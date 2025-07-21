@@ -17,6 +17,8 @@ import (
 
 	"net/url"
 
+	"math"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -96,6 +98,32 @@ type FeedbackResponse struct {
 }
 
 var db *sql.DB
+
+var staticTier3POIs []map[string]interface{}
+
+func loadStaticTier3POIs() {
+	if staticTier3POIs != nil {
+		return
+	}
+	data, err := ioutil.ReadFile("beijing_tier3_hospitals_by_keyword_go.json")
+	if err != nil {
+		log.Printf("[三甲名单] 加载失败: %v", err)
+		staticTier3POIs = []map[string]interface{}{}
+		return
+	}
+	json.Unmarshal(data, &staticTier3POIs)
+	log.Printf("[三甲名单] 已加载 %d 条三甲POI", len(staticTier3POIs))
+}
+
+func isInRadius(poiLocation string, centerLng, centerLat, radius float64) bool {
+	parts := strings.Split(poiLocation, ",")
+	if len(parts) != 2 {
+		return false
+	}
+	lng, _ := strconv.ParseFloat(parts[0], 64)
+	lat, _ := strconv.ParseFloat(parts[1], 64)
+	return haversine(lng, lat, centerLng, centerLat) < radius
+}
 
 func main() {
 	// 自动加载.env文件
@@ -262,7 +290,7 @@ func insertSampleData() {
 	for _, hospital := range hospitals {
 		_, err := db.Exec(`
 			INSERT INTO hospitals (name, address, latitude, longitude, phone, hospital_type, main_departments, business_hours, qualifications)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 		`, hospital.Name, hospital.Address, hospital.Latitude, hospital.Longitude, hospital.Phone, hospital.HospitalType, hospital.MainDepartments, hospital.BusinessHours, hospital.Qualifications)
 
 		if err != nil {
@@ -726,17 +754,17 @@ func AmapAroundProxy(c *gin.Context) {
 		"090102": "社区医院",
 		"090200": "专科医院",
 		"090202": "牙科医院",
-		"090203": "眼科医院",
-		"090204": "耳鼻喉医院",
-		"090205": "胸科医院",
-		"090206": "骨科医院",
-		"090207": "肿瘤医院",
-		"090208": "脑科医院",
-		"090209": "妇科医院",
-		"090210": "精神医院",
-		"090211": "传染病医院",
-		"090300": "诊所",
-		"090400": "急救中心",
+		"090203": "icon_small_red_cross_normal",
+		"090204": "icon_small_red_cross_normal",
+		"090205": "icon_small_red_cross_normal",
+		"090206": "icon_small_red_cross_normal",
+		"090207": "icon_small_red_cross_normal",
+		"090208": "icon_small_red_cross_normal",
+		"090209": "icon_small_red_cross_normal",
+		"090210": "icon_small_red_cross_normal",
+		"090211": "icon_small_red_cross_normal",
+		"090300": "icon_clinic",
+		"090400": "icon_emergency",
 	}
 	poiMap := make(map[string]map[string]interface{})
 	var ledger []RawPOIRecord
@@ -765,6 +793,8 @@ func AmapAroundProxy(c *gin.Context) {
 			poiMap[id] = m
 		}
 	}
+	// ====== 新增：090100/090101合并预处理 ======
+	merge0901xxHospitals(poiMap)
 	// 写入amap_query_ledger.json到backend目录，增强健壮性
 	log.Println("[台账] 准备写入台账文件 backend/amap_query_ledger.json ...")
 	if _, err := os.Stat("backend"); os.IsNotExist(err) {
@@ -1048,11 +1078,11 @@ func AmapAroundProxy(c *gin.Context) {
 		"pois":   finalPois,
 	}
 	mergedBytes, _ := json.MarshalIndent(mergedResult, "", "  ")
-	errMerged := ioutil.WriteFile("backend/merged_poi_result.json", mergedBytes, 0644)
+	errMerged := ioutil.WriteFile("backend/cache/merged_poi_result.json", mergedBytes, 0644)
 	if errMerged != nil {
 		log.Println("[合并结果] 写入合并POI结果JSON失败:", errMerged)
 	} else {
-		log.Println("[合并结果] 合并POI结果写入backend/merged_poi_result.json成功")
+		log.Println("[合并结果] 合并POI结果写入backend/cache/merged_poi_result.json成功")
 	}
 
 	// 修正医院类别、ICON、排序判定逻辑
@@ -1065,6 +1095,83 @@ func AmapAroundProxy(c *gin.Context) {
 
 	c.JSON(http.StatusOK, mergedResult)
 	return
+}
+
+// 合并090100/090101医院POI，按名称最长公共子串≥4且距离<300米原则，生成新POI
+func merge0901xxHospitals(poiMap map[string]map[string]interface{}) {
+	// 1. 收集所有0901xx POI（typecode前4位为0901）
+	var poiList []map[string]interface{}
+	for _, poi := range poiMap {
+		tc, _ := poi["typecode"].(string)
+		if len(tc) >= 4 && tc[:4] == "0901" {
+			poiList = append(poiList, poi)
+		}
+	}
+	merged := make([]bool, len(poiList))
+	for i := 0; i < len(poiList); i++ {
+		if merged[i] {
+			continue
+		}
+		name1, _ := poiList[i]["name"].(string)
+		lat1, _ := parseFloatFromAny(poiList[i]["location_lat"])
+		lng1, _ := parseFloatFromAny(poiList[i]["location_lng"])
+		if lat1 == 0 || lng1 == 0 {
+			log.Printf("[合并算法] 坐标无效，不合并: %s", name1)
+			continue
+		}
+		group := []int{i}
+		for j := i + 1; j < len(poiList); j++ {
+			if merged[j] {
+				continue
+			}
+			name2, _ := poiList[j]["name"].(string)
+			lat2, _ := parseFloatFromAny(poiList[j]["location_lat"])
+			lng2, _ := parseFloatFromAny(poiList[j]["location_lng"])
+			if lat2 == 0 || lng2 == 0 {
+				log.Printf("[合并算法] 坐标无效，不合并: %s 和 %s", name1, name2)
+				continue
+			}
+			common := lcs(name1, name2)
+			dist := calculateDistance(lat1, lng1, lat2, lng2) * 1000
+			if len([]rune(common)) >= 4 && dist < 300 {
+				log.Printf("[合并算法] LCS和距离均满足，合并: %s 和 %s (LCS: %s, 距离: %.2fm)", name1, name2, common, dist)
+				group = append(group, j)
+				merged[j] = true
+			} else {
+				log.Printf("[合并算法] 不合并: %s 和 %s (LCS: %s, 距离: %.2fm)", name1, name2, common, dist)
+			}
+		}
+		if len(group) > 1 {
+			// 生成新POI
+			commonName := poiList[group[0]]["name"].(string)
+			for _, idx := range group[1:] {
+				commonName = lcs(commonName, poiList[idx]["name"].(string))
+			}
+			commonAddr := poiList[group[0]]["address"].(string)
+			for _, idx := range group[1:] {
+				commonAddr = lcs(commonAddr, poiList[idx]["address"].(string))
+			}
+			newType := "090100"
+			for _, idx := range group {
+				if poiList[idx]["typecode"] == "090101" {
+					newType = "090101"
+					break
+				}
+			}
+			newPOI := map[string]interface{}{
+				"name":      commonName,
+				"address":   commonAddr,
+				"typecode":  newType,
+				"childtype": []string{},
+				"tel":       "",
+			}
+			for _, idx := range group {
+				poiList[idx]["category"] = nil // 原POI分类置为null
+			}
+			poiMap[commonName+commonAddr] = newPOI
+			log.Printf("[合并算法] 生成新合并POI: %s, 地址: %s, 类别: %s", commonName, commonAddr, newType)
+		}
+	}
 }
 
 // 辅助函数：从interface{}安全解析float64
@@ -1186,7 +1293,7 @@ func getMergedPois(c *gin.Context) {
 	}
 
 	// 写入amap_query_ledger.json到backend目录，增强健壮性
-	log.Println("[台账] 准备写入台账文件 backend/amap_query_ledger.json ...")
+	log.Println("[台账] 准备写入台账文件 backend/cache/amap_query_ledger.json ...")
 	if _, err := os.Stat("backend"); os.IsNotExist(err) {
 		errMk := os.Mkdir("backend", 0755)
 		if errMk != nil {
@@ -1194,7 +1301,7 @@ func getMergedPois(c *gin.Context) {
 		}
 	}
 	ledgerBytes, _ := json.MarshalIndent(ledger, "", "  ")
-	errWrite := ioutil.WriteFile("backend/amap_query_ledger.json", ledgerBytes, 0644)
+	errWrite := ioutil.WriteFile("backend/cache/amap_query_ledger.json", ledgerBytes, 0644)
 	if errWrite != nil {
 		log.Println("[台账] 写台账失败:", errWrite)
 	} else {
@@ -1470,11 +1577,11 @@ func getMergedPois(c *gin.Context) {
 		"pois":   finalPois,
 	}
 	mergedBytes, _ := json.MarshalIndent(mergedResult, "", "  ")
-	errMerged := ioutil.WriteFile("backend/merged_poi_result.json", mergedBytes, 0644)
+	errMerged := ioutil.WriteFile("backend/cache/merged_poi_result.json", mergedBytes, 0644)
 	if errMerged != nil {
 		log.Println("[合并结果] 写入合并POI结果JSON失败:", errMerged)
 	} else {
-		log.Println("[合并结果] 合并POI结果写入backend/merged_poi_result.json成功")
+		log.Println("[合并结果] 合并POI结果写入backend/cache/merged_poi_result.json成功")
 	}
 
 	// 修正医院类别、ICON、排序判定逻辑
@@ -1622,4 +1729,56 @@ func classifyHospital(poi map[string]interface{}) (string, string, int) {
 	// 其它默认
 	log.Printf("[分类算法] %s → 其他 (主要typecode: %s)", name, primaryTypecode)
 	return "其他", "icon_default", 99
+}
+
+// 地址最大交集
+func maxCommonAddress(addrs []string) string {
+	if len(addrs) == 0 {
+		return ""
+	}
+	res := addrs[0]
+	for i := 1; i < len(addrs); i++ {
+		res = lcs(res, addrs[i])
+		if res == "" {
+			break
+		}
+	}
+	return res
+}
+
+// 最长公共子串
+func lcs(s1, s2 string) string {
+	m, n := len(s1), len(s2)
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+	}
+	maxLen, end := 0, 0
+	for i := 1; i <= m; i++ {
+		for j := 1; j <= n; j++ {
+			if s1[i-1] == s2[j-1] {
+				dp[i][j] = dp[i-1][j-1] + 1
+				if dp[i][j] > maxLen {
+					maxLen = dp[i][j]
+					end = i
+				}
+			}
+		}
+	}
+	if maxLen >= 4 {
+		return s1[end-maxLen : end]
+	}
+	return ""
+}
+
+// 计算两点经纬度距离（单位：米）
+func haversine(lng1, lat1, lng2, lat2 float64) float64 {
+	const R = 6371000 // 地球半径，单位：米
+	dLat := (lat2 - lat1) * math.Pi / 180.0
+	dLon := (lng2 - lng1) * math.Pi / 180.0
+	a := math.Sin(dLat/2)*math.Sin(dLat/2) +
+		math.Cos(lat1*math.Pi/180.0)*math.Cos(lat2*math.Pi/180.0)*
+			math.Sin(dLon/2)*math.Sin(dLon/2)
+	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
+	return R * c
 }

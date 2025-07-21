@@ -300,6 +300,12 @@ function renderTypeCode(typecode) {
   return String(typecode);
 }
 
+// 统一构造API参数
+function buildMergedPoisUrl(loc, radius = 5000, force = true) {
+  const t = Date.now();
+  return `/api/merged-pois?location=${loc.lng},${loc.lat}&radius=${radius}&force=${force}&t=${t}`;
+}
+
 export default function Home() {
   const [address, setAddress] = useState('');
   const [location, setLocation] = useState({ lat: 39.9336, lng: 116.4402 }); // 默认北京东四十条
@@ -508,7 +514,7 @@ export default function Home() {
       try {
         // 优先尝试获取合并后POI及TAG
         console.log('开始调用 /api/merged-pois');
-        const mergedRes = await fetch('/api/merged-pois');
+        const mergedRes = await fetch(buildMergedPoisUrl(location));
         console.log('API响应状态:', mergedRes.status);
         if (mergedRes.ok) {
           const mergedData = await mergedRes.json();
@@ -615,7 +621,7 @@ export default function Home() {
           setLoading(true);
           try {
             // 直接调用合并POI API
-            const mergedRes = await fetch(`/api/merged-pois?location=${newLoc.lng},${newLoc.lat}&radius=5000`);
+            const mergedRes = await fetch(buildMergedPoisUrl(newLoc));
             console.log('合并POI API响应状态:', mergedRes.status);
             if (mergedRes.ok) {
               const mergedData = await mergedRes.json();
@@ -748,7 +754,7 @@ export default function Home() {
     try {
       // 优先使用合并POI API，添加时间戳避免缓存
       const timestamp = Date.now();
-      const mergedRes = await fetch(`/api/merged-pois?location=${newSearchLatLng.lng},${newSearchLatLng.lat}&radius=5000&t=${timestamp}`);
+      const mergedRes = await fetch(buildMergedPoisUrl(newSearchLatLng));
       console.log('搜索时合并POI API响应状态:', mergedRes.status);
       if (mergedRes.ok) {
         const mergedData = await mergedRes.json();
@@ -849,7 +855,7 @@ export default function Home() {
     try {
       // 强制重新调用合并POI API
       const timestamp = Date.now();
-      const mergedRes = await fetch(`/api/merged-pois?location=${location.lng},${location.lat}&radius=5000&t=${timestamp}`);
+      const mergedRes = await fetch(buildMergedPoisUrl(location));
       console.log('刷新时合并POI API响应状态:', mergedRes.status);
       if (mergedRes.ok) {
         const mergedData = await mergedRes.json();

@@ -1,0 +1,24 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"count":71,"pois":[{"address":"东直门外大街48号东方银座B座11层","adname":"东城区","algo_display_ord
+                    er":0,"algo_hospital_category":"null","algo_icon_type":"null","biz_ext":{"cost":[],"
+                    rating":"3.5"},"biz_type":[],"ch...
+RawContent        : HTTP/1.1 200 OK
+                    Transfer-Encoding: chunked
+                    Content-Type: application/json; charset=utf-8
+                    Date: Sat, 19 Jul 2025 09:57:38 GMT
+                    
+                    {"count":71,"pois":[{"address":"东直门外大街48号东方银座B座11层","adname":"东城区","a...
+Forms             : {}
+Headers           : {[Transfer-Encoding, chunked], [Content-Type, application/json; charset=utf-8], [Dat
+                    e, Sat, 19 Jul 2025 09:57:38 GMT]}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 57112
+
+
+

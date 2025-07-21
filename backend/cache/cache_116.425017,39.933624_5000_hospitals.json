@@ -1,0 +1,735 @@
+{
+  "count": 21,
+  "pois": [
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "319",
+      "cityname": "北京市",
+      "distance": "401",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A9V539",
+      "importance": [],
+      "location": "116.426985,39.936903",
+      "name": "东直门医院东城院区病房楼",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/c413bb90861f38b78f0a0f1d6727473c"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "361",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A9V5D1",
+      "importance": [],
+      "location": "116.426642,39.936622",
+      "name": "东直门医院东城院区骨伤科",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/04d93a4af89406367ef0b688f95c06b3"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/f9252e1062a389346a427f928641ec0c"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "421",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A9V5B7",
+      "importance": [],
+      "location": "116.427753,39.936774",
+      "name": "东直门医院东城院区感染疾病科",
+      "parent": "B000A83XRE",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四十条南门仓5号解放军总医院第七医学中心",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "308",
+      "cityname": "北京市",
+      "distance": "446",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1MBSP",
+      "importance": [],
+      "location": "116.428370,39.930548",
+      "name": "中国人民解放军总医院第七医学中心药学楼",
+      "parent": "B000A8VWCK",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/dd2ea1fa33668bfe1c43e2642f0561ee"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓胡同5号北京中医药大学东直门医院",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "462",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFG2U75D",
+      "importance": [],
+      "location": "116.427650,39.937259",
+      "name": "东直门医院东城院区特需门诊",
+      "parent": "B000A83XRE",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四十条南门仓5号解放军总医院第七医学中心",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "434",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1MBSM",
+      "importance": [],
+      "location": "116.428500,39.930774",
+      "name": "中国人民解放军总医院第七医学中心药剂科",
+      "parent": "B000A8VWCK",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-66721296",
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四六条南门仓5号",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "435",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1MBSO",
+      "importance": [],
+      "location": "116.428130,39.930525",
+      "name": "中国人民解放军总医院第七医学中心药理科",
+      "parent": "B000A8VWCK",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四六条南门仓5号解放军总医院第七医学中心",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "438",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1MBSB",
+      "importance": [],
+      "location": "116.428104,39.930471",
+      "name": "中国人民解放军总医院第七医学中心理疗科",
+      "parent": "B000A8VWCK",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/27954e413ba46643b5aaf42f8af8d355"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "451",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0IKOU41JW",
+      "importance": [],
+      "location": "116.427706,39.937117",
+      "name": "东直门医院东城院区发热门诊",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/40263d7976552cc93ed39cd1b3d2dd70"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/3f3109283277c3b91125e859d60ada94"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/4939242bea3a2794ee73e0255000c170"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号北京中医药大学东直门医院内",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "318",
+      "cityname": "北京市",
+      "distance": "383",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A9V64L",
+      "importance": [],
+      "location": "116.426939,39.936739",
+      "name": "东直门医院东城院区急诊科",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/abb880c82ab245b0494a56cf6043adc7"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四十条南门仓胡同5号中国人民解放军总医院第七医学中心",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "308",
+      "cityname": "北京市",
+      "distance": "416",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1M92A",
+      "importance": [],
+      "location": "116.428295,39.930856",
+      "name": "中国人民解放军总医院第七医学中心药剂楼",
+      "parent": "B000A8VWCK",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/6aa3dbedcf3a31a94a4f9d10d8ff8fde"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号北京中医药大学东直门医院内",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "319",
+      "cityname": "北京市",
+      "distance": "383",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFG2U6AF",
+      "importance": [],
+      "location": "116.426898,39.936752",
+      "name": "东直门医院东城院区住院楼",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/8d8c22b97d32b3b9551692eb00d2d75e"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "416",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFF419W2",
+      "importance": [],
+      "location": "116.427686,39.936757",
+      "name": "东直门医院东城院区肠道门诊",
+      "parent": "B000A83XRE",
+      "photos": [],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号北京中医药大学东直门医院内",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "317",
+      "cityname": "北京市",
+      "distance": "384",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000AB96YL",
+      "importance": [],
+      "location": "116.426367,39.936917",
+      "name": "东直门医院东城院区门诊楼",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/78ecedf1fb5dbb6962dce1823165c278"
+        },
+        {
+          "title": [],
+          "url": "https://aos-comment.amap.com/B000AB96YL/comment/content_media_external_images_media_1000044359_ss__1747227728712_89148364.jpg"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/cd075adc364b533f921676ac4bb2f4e7"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-84013276",
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号东直门医院东城院区",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "307",
+      "cityname": "北京市",
+      "distance": "418",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000AA71TN",
+      "importance": [],
+      "location": "116.427730,39.936753",
+      "name": "东直门医院东城院区肝炎门诊",
+      "parent": "B000A83XRE",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/147473130cd6d203161e905812ded77c"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四六条南门仓5号",
+      "adname": "东城区",
+      "algo_display_order": 0,
+      "algo_hospital_category": "null",
+      "algo_icon_type": "null",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "319",
+      "cityname": "北京市",
+      "distance": "437",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFK1M92B",
+      "importance": [],
+      "location": "116.429210,39.931360",
+      "name": "中国人民解放军总医院第七医学中心住院部",
+      "parent": "B000A8VWCK",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/75e02a6e8fba107ebe5cab67dc0e12e8"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/0c8b587e6620d31a7ff2309aebaa575b"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "东四十条南门仓胡同5号",
+      "adname": "东城区",
+      "algo_display_order": 1,
+      "algo_hospital_category": "三甲",
+      "algo_icon_type": "icon_tier3_hospital_bold",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "457",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A8VWCK",
+      "importance": [],
+      "location": "116.429131,39.930995",
+      "name": "中国人民解放军总医院第七医学中心",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/97c61fc65a0cdcecd90826aa0919bdf5"
+        },
+        {
+          "title": "外景图",
+          "url": "http://store.is.autonavi.com/showpic/1ec9a7c742ad86b37df496acaa7a3689"
+        },
+        {
+          "title": "外景图",
+          "url": "http://store.is.autonavi.com/showpic/2ef881873f3c020d0c0719cc5870c257"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-66721629",
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓胡同北京中医药大学东直门医院",
+      "adname": "东城区",
+      "algo_display_order": 1,
+      "algo_hospital_category": "三甲",
+      "algo_icon_type": "icon_tier3_hospital_bold",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "418",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B0FFGPO6XQ",
+      "importance": [],
+      "location": "116.427178,39.936999",
+      "name": "北京中医药大学东直门医院放射科CT核磁共振室",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/1b03e61cf6efbdb273f7355b74d89d9f"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓5号",
+      "adname": "东城区",
+      "algo_display_order": 1,
+      "algo_hospital_category": "三甲",
+      "algo_icon_type": "icon_tier3_hospital_bold",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "453",
+      "icon_type": "icon_tier3_hospital",
+      "id": "B000A83XRE",
+      "importance": [],
+      "location": "116.427707,39.937140",
+      "name": "东直门医院东城院区",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/fe4eaf6b6645b79e8ee997008b4c0d72"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/65a2ee348be59c1502aff45638acd7d4"
+        },
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/fe2010518285725bb6b45fc40b72f05f"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-84013276",
+      "type": "医疗保健服务;综合医院;三级甲等医院",
+      "typecode": "090101"
+    },
+    {
+      "address": "海运仓社区南颂年3号楼1层",
+      "adname": "东城区",
+      "algo_display_order": 3,
+      "algo_hospital_category": "社区医院",
+      "algo_icon_type": "icon_small_red_cross_bold",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": "202",
+      "cityname": "北京市",
+      "distance": "385",
+      "icon_type": "icon_health_center",
+      "id": "B000AA0K51",
+      "importance": [],
+      "location": "116.428850,39.935460",
+      "name": "东城区海运仓社区卫生服务站",
+      "parent": "B0FFG4VHC3",
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/b09fbf7c8451100a23f586d972d122a7"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": "010-84073206",
+      "type": "医疗保健服务;综合医院;卫生院",
+      "typecode": "090102"
+    },
+    {
+      "address": "工人体育场北路13号院4号楼",
+      "adname": "朝阳区",
+      "algo_display_order": 7,
+      "algo_hospital_category": "耳鼻喉",
+      "algo_icon_type": "icon_small_red_cross_normal",
+      "biz_ext": {
+        "cost": [],
+        "rating": []
+      },
+      "biz_type": [],
+      "childtype": [],
+      "cityname": "北京市",
+      "distance": "2092",
+      "icon_type": "icon_small_red_cross_normal",
+      "id": "B0KRDZIFA5",
+      "importance": [],
+      "location": "116.449518,39.934238",
+      "name": "北京云川耳鼻喉",
+      "parent": [],
+      "photos": [
+        {
+          "title": [],
+          "url": "http://store.is.autonavi.com/showpic/e518b48cb7111d2d9c3f5755c5b10783"
+        }
+      ],
+      "pname": "北京市",
+      "poiweight": [],
+      "shopid": [],
+      "shopinfo": "2",
+      "tel": [],
+      "type": "医疗保健服务;专科医院;耳鼻喉医院",
+      "typecode": "090204"
+    }
+  ],
+  "status": "1"
+}
