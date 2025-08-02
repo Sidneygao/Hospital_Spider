@@ -18,7 +18,7 @@
 ### 前端
 - **框架**: React 18 + TypeScript
 - **UI库**: Ant Design 5.x
-- **地图**: Google Maps API
+- **地图**: 高德地图API
 - **状态管理**: Redux Toolkit
 - **数据可视化**: ECharts
 - **设计系统**: 淡雅色调 (#8B9DC3) + 卡片式布局
@@ -54,7 +54,7 @@
 ### 环境要求
 - Go 1.21+
 - Node.js 16+
-- Google Maps API Key
+- 高德地图API Key
 
 ### 后端启动
 
@@ -66,7 +66,7 @@
 2. **配置环境变量**
    创建 `.env` 文件：
    ```
-   GOOGLE_MAPS_API_KEY=your_google_maps_api_key  # 必须通过环境变量配置，严禁在代码和配置文件中明文出现API Key
+   AMAP_API_KEY=your_amap_api_key  # 必须通过环境变量配置，严禁在代码和配置文件中明文出现API Key
    PORT=8080
    ```
 
@@ -140,7 +140,22 @@ GET /api/hospitals/search?lat=13.7563&lng=100.5018&radius=10&limit=10
 GET /api/hospitals/1
 ```
 
-### 用户反馈
+### 医院评级
+```
+GET /api/hospitals/1/ratings
+```
+
+### 医院评论
+```
+GET /api/hospitals/1/reviews
+```
+
+### 医院用户反馈
+```
+GET /api/hospitals/1/feedback
+```
+
+### 提交用户反馈
 ```
 POST /api/hospitals/1/feedback
 Content-Type: application/json

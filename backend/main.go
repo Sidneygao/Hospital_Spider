@@ -168,6 +168,11 @@ func main() {
 		api.GET("/hospitals/search", searchHospitals)
 		api.GET("/hospitals/:id", getHospitalDetail)
 
+		// 医院评级 API
+		api.GET("/hospitals/:id/ratings", getHospitalRatingsAPI)
+		api.GET("/hospitals/:id/reviews", getHospitalReviews)
+		api.GET("/hospitals/:id/feedback", getHospitalFeedback)
+
 		// 用户反馈 API
 		api.POST("/hospitals/:id/feedback", submitFeedback)
 		api.GET("/places/hospitals", getNearbyHospitals)
@@ -1781,4 +1786,123 @@ func haversine(lng1, lat1, lng2, lat2 float64) float64 {
 			math.Sin(dLon/2)*math.Sin(dLon/2)
 	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
 	return R * c
+}
+
+// 获取医院评级API
+func getHospitalRatingsAPI(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid hospital ID"})
+		return
+	}
+
+	// 查询医院评级
+	rows, err := db.Query(`
+		SELECT id, hospital_id, source, rating_value, confidence, rating_date, created_at
+		FROM ratings
+		WHERE hospital_id = ?
+		ORDER BY created_at DESC
+	`, id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	defer rows.Close()
+
+	var ratings []Rating
+	for rows.Next() {
+		var r Rating
+		err := rows.Scan(&r.ID, &r.HospitalID, &r.Source, &r.RatingValue, &r.Confidence, &r.RatingDate, &r.CreatedAt)
+		if err != nil {
+			continue
+		}
+		ratings = append(ratings, r)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": "success",
+		"count":  len(ratings),
+		"data":   ratings,
+	})
+}
+
+// 获取医院评论
+func getHospitalReviews(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid hospital ID"})
+		return
+	}
+
+	// 查询医院评论
+	rows, err := db.Query(`
+		SELECT id, hospital_id, source, user_name, rating, review_text, review_date, sentiment_score, created_at
+		FROM reviews
+		WHERE hospital_id = ?
+		ORDER BY created_at DESC
+		LIMIT 50
+	`, id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	defer rows.Close()
+
+	var reviews []Review
+	for rows.Next() {
+		var r Review
+		err := rows.Scan(&r.ID, &r.HospitalID, &r.Source, &r.UserName, &r.Rating, &r.ReviewText, &r.ReviewDate, &r.SentimentScore, &r.CreatedAt)
+		if err != nil {
+			continue
+		}
+		reviews = append(reviews, r)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": "success",
+		"count":  len(reviews),
+		"data":   reviews,
+	})
+}
+
+// 获取医院用户反馈
+func getHospitalFeedback(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid hospital ID"})
+		return
+	}
+
+	// 查询用户反馈
+	rows, err := db.Query(`
+		SELECT id, hospital_id, user_ip, rating, comment, created_at
+		FROM user_feedback
+		WHERE hospital_id = ?
+		ORDER BY created_at DESC
+		LIMIT 50
+	`, id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	defer rows.Close()
+
+	var feedbacks []UserFeedback
+	for rows.Next() {
+		var f UserFeedback
+		err := rows.Scan(&f.ID, &f.HospitalID, &f.UserIP, &f.Rating, &f.Comment, &f.CreatedAt)
+		if err != nil {
+			continue
+		}
+		feedbacks = append(feedbacks, f)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": "success",
+		"count":  len(feedbacks),
+		"data":   feedbacks,
+	})
 }

@@ -22,7 +22,7 @@
 ### 模块划分
 
 1. **数据采集层**
-   - Google Maps爬虫模块
+   - 高德地图爬虫模块
    - 医院评级数据爬虫模块
    - 用户评论爬虫模块
    - 数据更新与缓存管理模块
@@ -429,10 +429,10 @@ def rank_hospitals(hospitals, user_preferences=None):
 ## 部署架构
 
 ### 开发环境
-- Python 3.9+
-- Flask Web框架
+- Go 1.21+
+- Gin Web框架
 - SQLite数据库
-- 前端: HTML5 + CSS3 + JavaScript
+- 前端: React 18 + TypeScript + Ant Design 5.x
 
 ### 生产环境
 - Render托管服务
