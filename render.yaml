@@ -1,0 +1,27 @@
+services:
+  # Backend Service
+  - type: web
+    name: hospital-spider-backend
+    env: go
+    buildCommand: cd backend && go build -o main .
+    startCommand: cd backend && ./main
+    envVars:
+      - key: AMAP_API_KEY
+        sync: false
+      - key: PORT
+        value: 8080
+      - key: GIN_MODE
+        value: release
+    healthCheckPath: /api/hospitals
+    autoDeploy: true
+
+  # Frontend Service
+  - type: web
+    name: hospital-spider-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://hospital-spider-backend.onrender.com
+    autoDeploy: true 

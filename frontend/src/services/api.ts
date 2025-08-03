@@ -1,7 +1,7 @@
 import { Hospital, HospitalDetail } from '../types/hospital';
 
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';
+  process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 // 通用请求函数
 const request = async <T>(url: string, options?: RequestInit): Promise<T> => {
